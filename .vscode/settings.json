@@ -1,0 +1,12 @@
+{
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "html",
+        "xhtml",
+        "axaml"
+    ],
+    "emmet.includeLanguages": {
+        "xml": "html",
+        "axaml": "html",
+    },
+}

@@ -1,0 +1,106 @@
+<UserControl
+    x:Class="MyApp.Views.LoginView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:MyApp.ViewModels"
+    x:DataType="vm:LoginViewModel"
+    mc:Ignorable="d">
+
+
+    <Border
+        MinWidth="400"
+        MinHeight="400"
+        Padding="24"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Background="White"
+        BorderBrush="Gray"
+        BorderThickness="1"
+        CornerRadius="8">
+        <Border.Effect>
+            <DropShadowEffect
+                BlurRadius="10"
+                OffsetX="4"
+                OffsetY="4"
+                Opacity="0.3"
+                Color="Black" />
+        </Border.Effect>
+        <StackPanel Spacing="10">
+            <TextBlock
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="Black"
+                Text="Log in to our platform" />
+
+            <TextBlock
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                FontSize="16"
+                FontWeight="Bold"
+                Foreground="Red"
+                IsVisible="{Binding Error}"
+                Text="{Binding Message}" />
+
+            <!--  Email  -->
+            <StackPanel>
+                <TextBlock
+                    Margin="0,10,0,4"
+                    FontSize="12"
+                    Foreground="Gray"
+                    Text="Your email" />
+                <TextBox Text="{Binding Email}" Watermark="name@company.com" />
+            </StackPanel>
+
+            <!--  Password  -->
+            <StackPanel>
+                <TextBlock
+                    Margin="0,10,0,4"
+                    FontSize="12"
+                    Foreground="Gray"
+                    Text="Your password" />
+                <TextBox
+                    Classes="form-control"
+                    PasswordChar="•"
+                    Text="{Binding Password}"
+                    Watermark="Enter your password" />
+            </StackPanel>
+
+            <!--  Remember Me and Lost Password  -->
+            <DockPanel Margin="0,10,0,0">
+                <CheckBox VerticalAlignment="Center" Content="Remember me" />
+                <TextBlock
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Cursor="Hand"
+                    Foreground="Blue"
+                    Text="Lost Password?" />
+            </DockPanel>
+
+            <!--  Login Button  -->
+            <Button
+                Padding="10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Background="Blue"
+                Command="{Binding ClickAction}"
+                Content="Login to your account"
+                Foreground="White" />
+
+            <!--  Register Text  -->
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="12"
+                Foreground="Gray">
+                <Run Text="Not registered? " />
+                <Run
+                    Foreground="Blue"
+                    Text="Create account"
+                    TextDecorations="Underline" />
+            </TextBlock>
+
+        </StackPanel>
+    </Border>
+</UserControl>
