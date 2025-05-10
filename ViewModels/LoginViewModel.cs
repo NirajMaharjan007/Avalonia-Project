@@ -1,5 +1,7 @@
 using System;
 using System.Windows.Input;
+using Avalonia.Input;
+using Avalonia.Remote.Protocol.Input;
 using CommunityToolkit.Mvvm.Input;
 using MyApp.Services;
 using ReactiveUI;
@@ -8,6 +10,8 @@ namespace MyApp.ViewModels
 {
     public class LoginViewModel : ReactiveObject
     {
+        private Action? _action;
+
         private string _message = "N/A";
         private bool _error = false;
 
@@ -44,11 +48,13 @@ namespace MyApp.ViewModels
 
         public ICommand ClickAction { get; }
 
+        public ICommand EnterAction { get; }
+
         public event EventHandler? LoginSucceeded;
 
         public LoginViewModel()
         {
-            ClickAction = new RelayCommand(async () =>
+            _action = async () =>
             {
                 if (await Auth.IsConnected())
                 {
@@ -73,7 +79,10 @@ namespace MyApp.ViewModels
                     Message = "Failed to connection";
                     Console.WriteLine("Failed to Connect database");
                 }
-            });
+            };
+
+            ClickAction = new RelayCommand(_action);
+            EnterAction = new RelayCommand(_action);
         }
     }
 }

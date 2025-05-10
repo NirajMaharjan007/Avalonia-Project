@@ -7,8 +7,8 @@ namespace MyApp;
 
 public partial class MainWindow : Window
 {
-    private LoginView _loginView;
-    private RootView _rootView;
+    private readonly LoginView _loginView;
+    private readonly RootView _rootView;
 
     public MainWindow()
     {
@@ -17,12 +17,15 @@ public partial class MainWindow : Window
         _loginView = new LoginView();
         _rootView = new RootView();
 
-        var loginVm = _loginView.DataContext as LoginViewModel;
+        Width = 512;
+        Height = 550;
 
+        Console.WriteLine(MinWidth + " " + MinHeight);
         // Listen to login success event
-        if (loginVm != null)
+        if (_loginView.DataContext is LoginViewModel loginVm)
             loginVm.LoginSucceeded += OnLoginSucceeded;
 
+        CanResize = false;
         // Show login view initially
         Content = _loginView;
     }
@@ -30,5 +33,8 @@ public partial class MainWindow : Window
     private void OnLoginSucceeded(object? sender, EventArgs e)
     {
         Content = _rootView;
+        Width = 800;
+        Height = 600;
+        CanResize = true;
     }
 }

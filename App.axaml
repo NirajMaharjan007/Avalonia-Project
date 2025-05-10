@@ -5,7 +5,6 @@
      xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
      RequestedThemeVariant="Default">
      <!--  "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options.  -->
-
      <Application.Styles>
           <themes:MaterialTheme
                BaseTheme="Light"

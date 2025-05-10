@@ -8,8 +8,16 @@
     x:DataType="vm:MainViewModel"
     mc:Ignorable="d">
 
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="{Binding Greeting}" />
-        <Button Command="{Binding Click}" Content="Click" />
-    </StackPanel>
+    <DockPanel Background="Green">
+        <StackPanel
+            Width="200"
+            Height="1366"
+            MinHeight="1366"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="blue"
+            DockPanel.Dock="Left"
+            Orientation="Vertical" />
+
+    </DockPanel>
 </UserControl>
