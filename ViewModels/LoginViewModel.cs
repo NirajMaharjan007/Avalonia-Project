@@ -10,7 +10,7 @@ namespace MyApp.ViewModels
     {
         private string _message = "N/A";
         private bool _error = false;
-        private string _email = "";
+        private string _username = "";
         private string _password = "";
 
         public string Message
@@ -23,10 +23,10 @@ namespace MyApp.ViewModels
             get => _error;
             set => this.RaiseAndSetIfChanged(ref _error, value);
         }
-        public string Email
+        public string Username
         {
-            get => _email;
-            set => this.RaiseAndSetIfChanged(ref _email, value);
+            get => _username;
+            set => this.RaiseAndSetIfChanged(ref _username, value);
         }
 
         public string Password
@@ -43,7 +43,7 @@ namespace MyApp.ViewModels
             {
                 if (await Auth.IsConnected())
                 {
-                    var flag = await Auth.LoginAsync(Email, Password);
+                    var flag = await Auth.LoginAsync(Username, Password);
                     if (flag)
                     {
                         Error = false;

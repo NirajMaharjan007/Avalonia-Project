@@ -37,7 +37,7 @@
             <TextBlock
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
-                FontSize="16"
+                FontSize="14"
                 FontWeight="Bold"
                 Foreground="Red"
                 IsVisible="{Binding Error}"
@@ -49,8 +49,8 @@
                     Margin="0,10,0,4"
                     FontSize="12"
                     Foreground="Gray"
-                    Text="Your email" />
-                <TextBox Text="{Binding Email}" Watermark="name@company.com" />
+                    Text="Your Username" />
+                <TextBox Text="{Binding Username}" Watermark="Username" />
             </StackPanel>
 
             <!--  Password  -->

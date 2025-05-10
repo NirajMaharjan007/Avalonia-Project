@@ -2,6 +2,9 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Net.NetworkInformation;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MyApp.Services
@@ -11,18 +14,34 @@ namespace MyApp.Services
         public const string BASE_URL = "http://127.0.0.1:8080/api/";
     }
 
+    public class LoginRequest
+    {
+        [JsonPropertyName("username")] // For System.Text.Json
+        public required string Username { get; set; }
+
+        [JsonPropertyName("password")]
+        public required string Password { get; set; }
+    }
+
     public class Auth
     {
         private const string API = Api.BASE_URL + "user/";
         private static readonly HttpClient _httpClient = new HttpClient();
 
-        public static async Task<bool> LoginAsync(string email, string password)
+        public static async Task<bool> LoginAsync(string username, string password)
         {
             try
             {
-                var loginData = new { email = email, password = password };
-                Console.WriteLine(loginData);
-                var response = await _httpClient.PostAsJsonAsync($"{API}login/", loginData);
+                var loginData = new LoginRequest { Username = username, Password = password };
+
+                var content = new StringContent(
+                    JsonSerializer.Serialize(loginData),
+                    Encoding.UTF8,
+                    "application/json"
+                );
+
+                var response = await _httpClient.PostAsync($"{API}admin_login/", content);
+                Console.WriteLine(response.IsSuccessStatusCode);
                 return response.IsSuccessStatusCode;
             }
             catch (Exception ex)
