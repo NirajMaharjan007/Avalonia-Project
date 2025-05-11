@@ -1,6 +1,5 @@
 using System;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.Json;
@@ -24,10 +23,12 @@ namespace MyApp.Services
         public required string Password { get; set; }
     }
 
-    public class Auth
+    public static class Auth
     {
         private const string API = Api.BASE_URL + "user/";
-        private static readonly HttpClient _httpClient = new HttpClient();
+        private static readonly HttpClient _httpClient = new(
+            new SocketsHttpHandler() { PooledConnectionLifetime = TimeSpan.FromMinutes(5) }
+        );
 
         public static async Task<bool> LoginAsync(string username, string password)
         {
@@ -105,6 +106,11 @@ namespace MyApp.Services
             {
                 return false; // Conservative approach - assume offline
             }
+        }
+
+        public static void Dispose()
+        {
+            _httpClient.Dispose();
         }
     }
 }

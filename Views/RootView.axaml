@@ -19,5 +19,18 @@
             DockPanel.Dock="Left"
             Orientation="Vertical" />
 
+        <StackPanel
+            MinWidth="512"
+            MinHeight="600"
+            VerticalAlignment="Center"
+            Background="LightGray"
+            DockPanel.Dock="Right"
+            Orientation="Vertical">
+
+            <Grid Height="500" Background="#fcffaa" />
+
+        </StackPanel>
+
+
     </DockPanel>
 </UserControl>

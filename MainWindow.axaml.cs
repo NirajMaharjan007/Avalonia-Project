@@ -1,5 +1,6 @@
 using System;
 using Avalonia.Controls;
+using MyApp.Services;
 using MyApp.ViewModels;
 using MyApp.Views;
 
@@ -20,7 +21,6 @@ public partial class MainWindow : Window
         Width = 512;
         Height = 550;
 
-        Console.WriteLine(MinWidth + " " + MinHeight);
         // Listen to login success event
         if (_loginView.DataContext is LoginViewModel loginVm)
             loginVm.LoginSucceeded += OnLoginSucceeded;
@@ -28,6 +28,8 @@ public partial class MainWindow : Window
         CanResize = false;
         // Show login view initially
         Content = _loginView;
+
+        Closing += (s, e) => Auth.Dispose();
     }
 
     private void OnLoginSucceeded(object? sender, EventArgs e)
