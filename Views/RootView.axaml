@@ -4,13 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:MyApp.ViewModels"
-    x:DataType="vm:MainViewModel"
+    xmlns:views="clr-namespace:MyApp.Views.Subviews"
     mc:Ignorable="d">
 
     <DockPanel Background="Green">
         <StackPanel
-            Width="200"
+            Width="256"
             Height="1366"
             MinHeight="1366"
             HorizontalAlignment="Left"
@@ -20,16 +19,15 @@
             Orientation="Vertical" />
 
         <StackPanel
-            MinWidth="512"
-            MinHeight="600"
-            VerticalAlignment="Center"
+            MinHeight="700"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
             Background="LightGray"
             DockPanel.Dock="Right"
             Orientation="Vertical">
-
-            <Grid Height="500" Background="#fcffaa" />
-
+            <views:Dashboard />
         </StackPanel>
+
 
 
     </DockPanel>

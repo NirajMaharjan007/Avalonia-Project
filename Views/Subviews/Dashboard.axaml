@@ -1,0 +1,20 @@
+<UserControl
+    x:Class="MyApp.Views.Subviews.Dashboard"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:MyApp.ViewModels"
+    x:DataType="vm:MainViewModel"
+    mc:Ignorable="d">
+    <StackPanel Background="LightGray" Orientation="Vertical">
+        <WrapPanel
+            Margin="16"
+            HorizontalAlignment="Center"
+            Background="#00050505"
+            Orientation="Vertical">
+            <TextBlock FontSize="14" Text="{Binding Greeting}" />
+            <Button Command="{Binding Click}" Content="Click Me!" />
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

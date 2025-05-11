@@ -35,8 +35,8 @@ public partial class MainWindow : Window
     private void OnLoginSucceeded(object? sender, EventArgs e)
     {
         Content = _rootView;
-        Width = 800;
-        Height = 600;
+        Width = 1024;
+        Height = 720;
         CanResize = true;
     }
 }
