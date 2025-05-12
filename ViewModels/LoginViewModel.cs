@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
-using Avalonia.Input;
-using Avalonia.Remote.Protocol.Input;
+using Avalonia.Data;
+using Avalonia.Media;
 using CommunityToolkit.Mvvm.Input;
 using MyApp.Services;
 using ReactiveUI;
@@ -16,8 +16,23 @@ namespace MyApp.ViewModels
         private bool _error = false;
 
         private bool _success = false;
-        private string _username = "";
-        private string _password = "";
+        private string _username = string.Empty;
+        private string _usernameHint = string.Empty;
+
+        private string _password = string.Empty;
+
+        private string _passwordHint = string.Empty;
+        public string PasswordHint
+        {
+            get => _passwordHint;
+            set => this.RaiseAndSetIfChanged(ref _passwordHint, value);
+        }
+
+        public string UsernameHint
+        {
+            get => _usernameHint;
+            set => this.RaiseAndSetIfChanged(ref _usernameHint, value);
+        }
 
         public string Message
         {
@@ -37,24 +52,41 @@ namespace MyApp.ViewModels
         public string Username
         {
             get => _username;
-            set => this.RaiseAndSetIfChanged(ref _username, value);
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _username, value);
+                UsernameHint = string.IsNullOrWhiteSpace(value)
+                    ? "Username field may be empty"
+                    : "";
+            }
         }
 
         public string Password
         {
             get => _password;
-            set => this.RaiseAndSetIfChanged(ref _password, value);
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _password, value);
+                PasswordHint = string.IsNullOrWhiteSpace(value)
+                    ? "Password field may be empty"
+                    : "";
+            }
         }
 
         public ICommand ClickAction { get; }
 
         public ICommand EnterAction { get; }
+        public Action? Action
+        {
+            get => _action;
+            set => _action = value;
+        }
 
         public event EventHandler? LoginSucceeded;
 
         public LoginViewModel()
         {
-            _action = async () =>
+            Action = async () =>
             {
                 if (await Auth.IsConnected())
                 {
@@ -81,8 +113,8 @@ namespace MyApp.ViewModels
                 }
             };
 
-            ClickAction = new RelayCommand(_action);
-            EnterAction = new RelayCommand(_action);
+            ClickAction = new RelayCommand(Action);
+            EnterAction = new RelayCommand(Action);
         }
     }
 }
