@@ -2,9 +2,14 @@
     x:Class="MyApp.Views.LoginView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+    xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:showMeTheXaml="clr-namespace:ShowMeTheXaml;assembly=ShowMeTheXaml.Avalonia"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:vm="clr-namespace:MyApp.ViewModels"
+    xmlns:wpf="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
     x:DataType="vm:LoginViewModel"
     mc:Ignorable="d">
 
@@ -43,36 +48,35 @@
                 IsVisible="{Binding Error}"
                 Text="{Binding Message}" />
 
-            <!--  Email  -->
+            <!--  Username  -->
             <StackPanel>
-                <TextBlock
+                <TextBox
                     Margin="0,10,0,4"
+                    wpf:TextFieldAssist.Label="Username"
                     FontSize="12"
                     Foreground="Gray"
-                    Text="Your Username" />
-                <TextBox Text="{Binding Username}" Watermark="Username">
+                    Text="{Binding Username}"
+                    UseFloatingWatermark="True"
+                    Watermark="Enter your username">
                     <TextBox.KeyBindings>
                         <KeyBinding Command="{Binding EnterAction}" Gesture="Enter" />
-                        <!--  Or any other key  -->
                     </TextBox.KeyBindings>
                 </TextBox>
             </StackPanel>
 
             <!--  Password  -->
             <StackPanel>
-                <TextBlock
+                <TextBox
                     Margin="0,10,0,4"
+                    wpf:TextFieldAssist.Label="Password"
                     FontSize="12"
                     Foreground="Gray"
-                    Text="Your password" />
-                <TextBox
-                    Classes="form-control"
                     PasswordChar="•"
                     Text="{Binding Password}"
-                    Watermark="Enter your password">
+                    UseFloatingWatermark="True"
+                    Watermark="Enter your Password">
                     <TextBox.KeyBindings>
                         <KeyBinding Command="{Binding EnterAction}" Gesture="Enter" />
-                        <!--  Or any other key  -->
                     </TextBox.KeyBindings>
                 </TextBox>
             </StackPanel>

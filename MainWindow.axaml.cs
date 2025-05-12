@@ -18,6 +18,8 @@ public partial class MainWindow : Window
         _loginView = new LoginView();
         _rootView = new RootView();
 
+        WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
         Width = 512;
         Height = 550;
 

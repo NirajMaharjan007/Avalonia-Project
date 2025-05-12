@@ -7,28 +7,29 @@
     xmlns:views="clr-namespace:MyApp.Views.Subviews"
     mc:Ignorable="d">
 
-    <DockPanel Background="Green">
-        <StackPanel
-            Width="256"
-            Height="1366"
-            MinHeight="1366"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="blue"
-            DockPanel.Dock="Left"
-            Orientation="Vertical" />
+    <SplitView
+        Background="AliceBlue"
+        CompactPaneLength="48"
+        DisplayMode="CompactInline"
+        IsPaneOpen="True"
+        OpenPaneLength="300"
+        PaneBackground="Azure">
 
-        <StackPanel
-            MinHeight="700"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Background="LightGray"
-            DockPanel.Dock="Right"
-            Orientation="Vertical">
+        <SplitView.Pane>
+            <UniformGrid
+                Margin="16"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Rows="2">
+                <Button Content="-" />
+                <views:Sidebar />
+            </UniformGrid>
+        </SplitView.Pane>
+
+        <SplitView.Content>
             <views:Dashboard />
-        </StackPanel>
+        </SplitView.Content>
+    </SplitView>
 
 
-
-    </DockPanel>
 </UserControl>
