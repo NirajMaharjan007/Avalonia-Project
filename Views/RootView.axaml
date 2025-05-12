@@ -2,32 +2,68 @@
     x:Class="MyApp.Views.RootView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:icons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:MyApp.Views.Subviews"
     mc:Ignorable="d">
 
     <SplitView
-        Background="AliceBlue"
-        CompactPaneLength="48"
+        CompactPaneLength="52"
         DisplayMode="CompactInline"
         IsPaneOpen="True"
-        OpenPaneLength="300"
-        PaneBackground="Azure">
+        OpenPaneLength="256">
 
         <SplitView.Pane>
-            <UniformGrid
-                Margin="16"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Rows="2">
-                <Button Content="-" />
-                <views:Sidebar />
-            </UniformGrid>
+            <Border
+                Margin="0,0,32,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="#fcfcfc"
+                BorderBrush="Gray"
+                CornerRadius="16">
+                <Border.Effect>
+                    <DropShadowEffect
+                        BlurRadius="10"
+                        OffsetX="4"
+                        OffsetY="4"
+                        Opacity="0.3"
+                        Color="Black" />
+                </Border.Effect>
+                <UniformGrid
+                    Margin="16"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Rows="2">
+
+                    <UniformGrid.Styles>
+                        <!--  Icons are too small, use next style to let them bigger  -->
+                        <Style Selector="icons|MaterialIcon">
+                            <Setter Property="Width" Value="24" />
+                            <Setter Property="Height" Value="24" />
+                        </Style>
+                    </UniformGrid.Styles>
+                    <ToggleButton
+                        Grid.Column="0"
+                        Padding="4"
+                        Theme="{StaticResource MaterialFlatToggleButton}">
+                        <icons:MaterialIcon Kind="Menu" />
+                    </ToggleButton>
+
+                    <views:Sidebar />
+                </UniformGrid>
+            </Border>
         </SplitView.Pane>
 
         <SplitView.Content>
-            <views:Dashboard />
+            <StackPanel
+                Margin="8,16,8,16"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="#f9f9f9">
+                <views:Dashboard />
+            </StackPanel>
         </SplitView.Content>
     </SplitView>
 

@@ -2,19 +2,33 @@
     x:Class="MyApp.Views.Subviews.Dashboard"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:vm="clr-namespace:MyApp.ViewModels"
     x:DataType="vm:MainViewModel"
     mc:Ignorable="d">
-    <StackPanel Background="LightGray" Orientation="Vertical">
+    <StackPanel Orientation="Vertical">
         <WrapPanel
             Margin="16"
-            HorizontalAlignment="Center"
-            Background="#00050505"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
             Orientation="Vertical">
             <TextBlock FontSize="14" Text="{Binding Greeting}" />
             <Button Command="{Binding Click}" Content="Click Me!" />
+        </WrapPanel>
+
+        <WrapPanel
+            Margin="16"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top">
+            <controls:Card MinWidth="240" VerticalAlignment="Top">
+                <StackPanel Margin="0,4">
+                    <TextBlock Classes="Headline6" Text="Card title" />
+                    <TextBlock Classes="Body2" Text="Secondary text" />
+                </StackPanel>
+            </controls:Card>
         </WrapPanel>
     </StackPanel>
 </UserControl>
