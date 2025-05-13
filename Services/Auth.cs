@@ -26,7 +26,7 @@ namespace MyApp.Services
     public static class Auth
     {
         private static int _id = 0;
-        private static User _user = new("");
+        private static User _user = new();
         private const string API = IApi.BASE_URL + "user/";
         private static readonly HttpClient _httpClient = new(
             new SocketsHttpHandler() { PooledConnectionLifetime = TimeSpan.FromMinutes(5) }
@@ -42,12 +42,7 @@ namespace MyApp.Services
         {
             try
             {
-                _user = new(username);
-
-                UserId = await _user.GetUserId();
-
                 var loginData = new LoginRequest { Username = username, Password = password };
-
                 var content = new StringContent(
                     JsonSerializer.Serialize(loginData),
                     Encoding.UTF8,
@@ -55,6 +50,16 @@ namespace MyApp.Services
                 );
 
                 var response = await _httpClient.PostAsync($"{API}admin_login/", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    _user = new();
+                    UserId = await _user.GetUserId(username);
+                }
+                else
+                {
+                    UserId = 0;
+                }
 
                 return response.IsSuccessStatusCode;
             }
@@ -82,9 +87,10 @@ namespace MyApp.Services
                     if (reply.Status != IPStatus.Success)
                         return false;
                 }
-                catch (PingException)
+                catch (PingException ex)
                 {
-                    // Some networks block ICMP, so we'll proceed to HTTP check
+                    Console.WriteLine(ex.Message);
+                    return false;
                 }
 
                 // 3. Actual HTTP request to our API endpoint

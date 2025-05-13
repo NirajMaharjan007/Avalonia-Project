@@ -25,10 +25,10 @@
                 CornerRadius="16">
                 <Border.Effect>
                     <DropShadowEffect
-                        BlurRadius="10"
-                        OffsetX="4"
+                        BlurRadius="16"
+                        OffsetX="2"
                         OffsetY="4"
-                        Opacity="0.3"
+                        Opacity="0.24"
                         Color="Black" />
                 </Border.Effect>
                 <StackPanel

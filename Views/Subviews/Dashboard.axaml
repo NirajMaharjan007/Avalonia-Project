@@ -4,31 +4,121 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:icons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:vm="clr-namespace:MyApp.ViewModels"
     x:DataType="vm:MainViewModel"
     mc:Ignorable="d">
-    <StackPanel Orientation="Vertical">
-        <WrapPanel
-            Margin="16"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Center"
-            Orientation="Vertical">
-            <TextBlock FontSize="14" Text="{Binding Greeting}" />
-            <Button Command="{Binding Click}" Content="Click Me!" />
-        </WrapPanel>
+    <StackPanel
+        x:Name="MainLayout"
+        Margin="16"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Top"
+        Orientation="Vertical">
 
-        <WrapPanel
-            Margin="16"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top">
-            <controls:Card MinWidth="240" VerticalAlignment="Top">
-                <StackPanel Margin="0,4">
-                    <TextBlock Classes="Headline6" Text="Card title" />
-                    <TextBlock Classes="Body2" Text="Secondary text" />
-                </StackPanel>
+        <StackPanel>
+            <TextBlock
+                FontSize="28"
+                FontWeight="Bold"
+                Text="Main Dashboard"
+                TextAlignment="Left" />
+        </StackPanel>
+
+
+        <StackPanel
+            x:Name="CardLayout"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Orientation="Horizontal">
+            <!--  Cards  -->
+            <controls:Card
+                MinWidth="320"
+                Margin="16"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                CornerRadius="10">
+
+                <Grid
+                    Margin="8,28,8,28"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+                    <Grid.Styles>
+                        <Style Selector="icons|MaterialIcon">
+                            <Setter Property="Width" Value="64" />
+                            <Setter Property="Height" Value="64" />
+                        </Style>
+                    </Grid.Styles>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <icons:MaterialIcon Grid.Column="0" Kind="AccountMultiple" />
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Margin="24,0,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical"
+                        Spacing="8">
+                        <TextBlock
+                            FontSize="24"
+                            Text="Total User"
+                            TextAlignment="Center" />
+                        <TextBlock
+                            FontSize="28"
+                            FontWeight="Bold"
+                            Text="{Binding UserCount}"
+                            TextAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+
+
             </controls:Card>
-        </WrapPanel>
+
+            <controls:Card
+                MinWidth="320"
+                Margin="16"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                CornerRadius="10">
+
+                <Grid
+                    Margin="8,28,8,28"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+                    <Grid.Styles>
+                        <Style Selector="icons|MaterialIcon">
+                            <Setter Property="Width" Value="64" />
+                            <Setter Property="Height" Value="64" />
+                        </Style>
+                    </Grid.Styles>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <icons:MaterialIcon Grid.Column="0" Kind="AccountCheck" />
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Margin="24,0,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical"
+                        Spacing="8">
+                        <TextBlock
+                            FontSize="24"
+                            Text="Active Total User"
+                            TextAlignment="Center" />
+                        <TextBlock
+                            FontSize="28"
+                            FontWeight="Bold"
+                            Text="{Binding ActiveUserCount}"
+                            TextAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+            </controls:Card>
+        </StackPanel>
     </StackPanel>
 </UserControl>

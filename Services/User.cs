@@ -15,22 +15,41 @@ namespace MyApp.Services
 
         [JsonPropertyName("username")]
         public string? Username { get; set; }
+
+        [JsonPropertyName("is_superuser")]
+        public bool IsAdmin { get; set; }
+
+        [JsonPropertyName("is_active")]
+        public bool IsActive { get; set; }
     }
 
-    public class User(string username)
+    public class User
     {
         private readonly string API = IApi.BASE_URL + "user/";
 
-        protected string UserName
-        {
-            set => username = value;
-            get => username;
-        }
         private static readonly HttpClient _httpClient = new(
             new SocketsHttpHandler() { PooledConnectionLifetime = TimeSpan.FromMinutes(5) }
         );
 
-        public async Task<int> GetUserId()
+        internal async Task<int> GetUserCount()
+        {
+            var response = await _httpClient.GetAsync($"{API}");
+            response.EnsureSuccessStatusCode();
+            try
+            {
+                var content = await response.Content.ReadAsStreamAsync();
+                var users = JsonSerializer.Deserialize<List<UserData>>(content);
+
+                return users?.Count(user => !(user.IsAdmin)) ?? 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR! " + ex.Message);
+                return -1;
+            }
+        }
+
+        internal async Task<int> GetUserId(string username)
         {
             var response = await _httpClient.GetAsync($"{API}");
             response.EnsureSuccessStatusCode();
@@ -38,7 +57,7 @@ namespace MyApp.Services
             {
                 var responseContent = await response.Content.ReadAsStreamAsync();
                 var users = JsonSerializer.Deserialize<List<UserData>>(responseContent);
-                var user = users?.FirstOrDefault(u => u.Username == UserName);
+                var user = users?.FirstOrDefault(u => u.Username == username);
                 if (user is null)
                     return 0;
                 else
@@ -48,6 +67,24 @@ namespace MyApp.Services
             {
                 Console.WriteLine("Error  > parsing JSON: " + ex.Message);
                 Console.WriteLine("Extra> " + ex.Source, ex.StackTrace);
+                return -1;
+            }
+        }
+
+        internal async Task<int> GetActiveUserCount()
+        {
+            var response = await _httpClient.GetAsync($"{API}");
+            response.EnsureSuccessStatusCode();
+            try
+            {
+                var content = await response.Content.ReadAsStreamAsync();
+                var users = JsonSerializer.Deserialize<List<UserData>>(content);
+
+                return users?.Count(user => user.IsActive && !user.IsAdmin) ?? 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR! " + ex.Message);
                 return -1;
             }
         }
