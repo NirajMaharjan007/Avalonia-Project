@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyApp.Services
 {
-    public interface Api
+    public interface IApi
     {
         // API from BACKEND of My Project -> https://gitlab.com/niraj.mhrjn770/family-tree
         public const string BASE_URL = "http://127.0.0.1:8080/api/";
@@ -25,15 +25,27 @@ namespace MyApp.Services
 
     public static class Auth
     {
-        private const string API = Api.BASE_URL + "user/";
+        private static int _id = 0;
+        private static User _user = new("");
+        private const string API = IApi.BASE_URL + "user/";
         private static readonly HttpClient _httpClient = new(
             new SocketsHttpHandler() { PooledConnectionLifetime = TimeSpan.FromMinutes(5) }
         );
+
+        public static int UserId
+        {
+            get => _id;
+            private set => _id = value;
+        }
 
         public static async Task<bool> LoginAsync(string username, string password)
         {
             try
             {
+                _user = new(username);
+
+                UserId = await _user.GetUserId();
+
                 var loginData = new LoginRequest { Username = username, Password = password };
 
                 var content = new StringContent(
@@ -43,7 +55,7 @@ namespace MyApp.Services
                 );
 
                 var response = await _httpClient.PostAsync($"{API}admin_login/", content);
-                Console.WriteLine(response.IsSuccessStatusCode);
+
                 return response.IsSuccessStatusCode;
             }
             catch (Exception ex)
@@ -66,7 +78,7 @@ namespace MyApp.Services
                 try
                 {
                     using var ping = new Ping();
-                    var reply = await ping.SendPingAsync(new Uri(Api.BASE_URL).Host, 1500);
+                    var reply = await ping.SendPingAsync(new Uri(IApi.BASE_URL).Host, 1500);
                     if (reply.Status != IPStatus.Success)
                         return false;
                 }
@@ -78,7 +90,7 @@ namespace MyApp.Services
                 // 3. Actual HTTP request to our API endpoint
                 using var request = new HttpRequestMessage(
                     HttpMethod.Head, // Lightweight HEAD request
-                    $"{Api.BASE_URL}"
+                    $"{IApi.BASE_URL}"
                 ); // Assume health check endpoint
 
                 request.Headers.CacheControl = new System.Net.Http.Headers.CacheControlHeaderValue

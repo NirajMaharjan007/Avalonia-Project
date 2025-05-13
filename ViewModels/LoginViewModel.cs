@@ -1,7 +1,5 @@
 using System;
 using System.Windows.Input;
-using Avalonia.Data;
-using Avalonia.Media;
 using CommunityToolkit.Mvvm.Input;
 using MyApp.Services;
 using ReactiveUI;
@@ -91,6 +89,7 @@ namespace MyApp.ViewModels
                 if (await Auth.IsConnected())
                 {
                     var flag = await Auth.LoginAsync(Username, Password);
+
                     if (flag)
                     {
                         Success = true;

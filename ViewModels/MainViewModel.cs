@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using MyApp.Services;
 using ReactiveUI;
 
 namespace MyApp.ViewModels
@@ -35,7 +36,7 @@ namespace MyApp.ViewModels
             {
                 toggle();
                 if (IsClick)
-                    Greeting = "Button Clicked!";
+                    Greeting = "Button Clicked! " + Auth.UserId;
                 else
                     Greeting = "Hello, Avalonia!";
 
