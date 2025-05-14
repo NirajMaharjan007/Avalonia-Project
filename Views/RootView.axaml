@@ -12,11 +12,12 @@
     mc:Ignorable="d">
 
     <SplitView
-        CompactPaneLength="64"
+        CompactPaneLength="128"
         DisplayMode="CompactInline"
         IsPaneOpen="{Binding Expand}"
         OpenPaneLength="320">
 
+        <!--  SIDEBAR  -->
         <SplitView.Pane>
             <Border
                 Margin="0,0,32,0"
@@ -63,13 +64,68 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             FontSize="20"
+                            IsVisible="{Binding Expand}"
                             Text="Sidebar" />
                     </StackPanel>
-                    <views:Sidebar />
+                    <ScrollViewer>
+                        <StackPanel
+                            Margin="8"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Spacing="24">
+                            <StackPanel.Styles>
+                                <Style Selector="icons|MaterialIcon">
+                                    <Setter Property="Width" Value="28" />
+                                    <Setter Property="Height" Value="28" />
+                                </Style>
+                            </StackPanel.Styles>
+
+                            <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <ListBox.Styles>
+                                    <Style Selector="ListBoxItem">
+                                        <Setter Property="Padding" Value="8" />
+                                        <!-- <Setter Property="Margin" Value="0,8,0,8" /> -->
+                                        <Setter Property="Foreground" Value="#3b3f44" />
+                                    </Style>
+                                </ListBox.Styles>
+                                <ListBoxItem HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <StackPanel
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Top"
+                                        Orientation="Horizontal"
+                                        Spacing="16">
+                                        <icons:MaterialIcon Kind="MonitorDashboard" />
+                                        <TextBlock
+                                            FontSize="20"
+                                            IsVisible="{Binding Expand}"
+                                            Text="Dashboard" />
+                                    </StackPanel>
+                                </ListBoxItem>
+
+                                <ListBoxItem HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                    <StackPanel
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Top"
+                                        Orientation="Horizontal"
+                                        Spacing="16">
+                                        <icons:MaterialIcon Kind="AccountGroup" />
+                                        <TextBlock
+                                            FontSize="20"
+                                            IsVisible="{Binding Expand}"
+                                            Text="Users" />
+                                    </StackPanel>
+                                </ListBoxItem>
+
+                            </ListBox>
+                        </StackPanel>
+                    </ScrollViewer>
                 </StackPanel>
             </Border>
         </SplitView.Pane>
 
+
+
+        <!--  Main Content  -->
         <SplitView.Content>
             <StackPanel
                 Margin="8"

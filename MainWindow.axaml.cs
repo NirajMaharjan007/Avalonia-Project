@@ -37,8 +37,9 @@ public partial class MainWindow : Window
     private void OnLoginSucceeded(object? sender, EventArgs e)
     {
         Content = _rootView;
-        Width = 1024;
+        Width = 1200;
         Height = 720;
         CanResize = true;
+        WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
 }
