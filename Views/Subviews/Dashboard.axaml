@@ -129,5 +129,15 @@
                 </Grid>
             </controls:Card>
         </StackPanel>
+
+        <StackPanel
+            Margin="16"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Orientation="Vertical">
+            <WrapPanel>
+                <TextBlock Text="TODO DATA GRID" />
+            </WrapPanel>
+        </StackPanel>
     </StackPanel>
 </UserControl>

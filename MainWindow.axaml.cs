@@ -20,8 +20,8 @@ public partial class MainWindow : Window
 
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-        Width = 512;
-        Height = 550;
+        Width = 500;
+        Height = 500;
 
         // Listen to login success event
         if (_loginView.DataContext is LoginViewModel loginVm)

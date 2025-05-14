@@ -22,14 +22,14 @@
                 VerticalAlignment="Stretch"
                 Background="#fcfcfc"
                 BorderBrush="Gray"
-                CornerRadius="16">
+                CornerRadius="0,16,16,0">
                 <Border.Effect>
                     <DropShadowEffect
-                        BlurRadius="16"
-                        OffsetX="2"
+                        BlurRadius="20"
+                        OffsetX="4"
                         OffsetY="4"
-                        Opacity="0.24"
-                        Color="Black" />
+                        Opacity="0.3"
+                        Color="#808a93" />
                 </Border.Effect>
                 <StackPanel
                     Margin="16"
