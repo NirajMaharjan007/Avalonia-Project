@@ -80,7 +80,10 @@
                                 </Style>
                             </StackPanel.Styles>
 
-                            <ListBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <ListBox
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                SelectedItem="{Binding SelectedMenuItem}">
                                 <ListBox.Styles>
                                     <Style Selector="ListBoxItem">
                                         <Setter Property="Padding" Value="8" />
@@ -88,7 +91,10 @@
                                         <Setter Property="Foreground" Value="#3b3f44" />
                                     </Style>
                                 </ListBox.Styles>
-                                <ListBoxItem HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <ListBoxItem
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
+                                    Tag="Dashboard">
                                     <StackPanel
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Top"
@@ -102,7 +108,10 @@
                                     </StackPanel>
                                 </ListBoxItem>
 
-                                <ListBoxItem HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <ListBoxItem
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Center"
+                                    Tag="Users">
                                     <StackPanel
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Top"
@@ -132,7 +141,24 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Background="#f9f9f9">
-                <views:Dashboard />
+                <ContentControl Content="{Binding CurrentView}">
+                    <ContentControl.Styles>
+                        <Style Selector="ContentControl">
+                            <Style.Animations>
+                                <Animation Duration="0:0:0.3">
+                                    <KeyFrame Cue="0%">
+                                        <Setter Property="Opacity" Value="0.5" />
+                                    </KeyFrame>
+                                    <KeyFrame Cue="100%">
+                                        <Setter Property="Opacity" Value="1" />
+                                    </KeyFrame>
+                                </Animation>
+                            </Style.Animations>
+                        </Style>
+                    </ContentControl.Styles>
+                </ContentControl>
+
+
             </StackPanel>
         </SplitView.Content>
     </SplitView>
