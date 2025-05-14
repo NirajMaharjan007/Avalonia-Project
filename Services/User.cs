@@ -33,10 +33,10 @@ namespace MyApp.Services
 
         internal async Task<int> GetUserCount()
         {
-            var response = await _httpClient.GetAsync($"{API}");
-            response.EnsureSuccessStatusCode();
             try
             {
+                var response = await _httpClient.GetAsync($"{API}");
+                response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStreamAsync();
                 var users = JsonSerializer.Deserialize<List<UserData>>(content);
 
@@ -51,10 +51,10 @@ namespace MyApp.Services
 
         internal async Task<int> GetUserId(string username)
         {
-            var response = await _httpClient.GetAsync($"{API}");
-            response.EnsureSuccessStatusCode();
             try
             {
+                var response = await _httpClient.GetAsync($"{API}");
+                response.EnsureSuccessStatusCode();
                 var responseContent = await response.Content.ReadAsStreamAsync();
                 var users = JsonSerializer.Deserialize<List<UserData>>(responseContent);
                 var user = users?.FirstOrDefault(u => u.Username == username);
@@ -73,10 +73,10 @@ namespace MyApp.Services
 
         internal async Task<int> GetActiveUserCount()
         {
-            var response = await _httpClient.GetAsync($"{API}");
-            response.EnsureSuccessStatusCode();
             try
             {
+                var response = await _httpClient.GetAsync($"{API}");
+                response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStreamAsync();
                 var users = JsonSerializer.Deserialize<List<UserData>>(content);
 

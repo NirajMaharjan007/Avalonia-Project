@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -23,22 +24,22 @@ namespace MyApp.Services
         public required string Password { get; set; }
     }
 
-    public static class Auth
+    public class Auth
     {
-        private static int _id = 0;
-        private static User _user = new();
+        private int _id = 0;
+        private User _user = new();
         private const string API = IApi.BASE_URL + "user/";
         private static readonly HttpClient _httpClient = new(
             new SocketsHttpHandler() { PooledConnectionLifetime = TimeSpan.FromMinutes(5) }
         );
 
-        public static int UserId
+        public int UserId
         {
             get => _id;
             private set => _id = value;
         }
 
-        public static async Task<bool> LoginAsync(string username, string password)
+        public async Task<bool> LoginAsync(string username, string password)
         {
             try
             {
@@ -71,7 +72,7 @@ namespace MyApp.Services
             }
         }
 
-        public static async Task<bool> IsConnected()
+        public async Task<bool> IsConnected()
         {
             try
             {

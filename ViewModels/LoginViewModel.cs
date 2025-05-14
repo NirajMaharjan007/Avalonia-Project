@@ -10,6 +10,8 @@ namespace MyApp.ViewModels
     {
         private Action? _action;
 
+        private Auth _auth = new();
+
         private string _message = "N/A";
         private bool _error = false;
 
@@ -86,9 +88,9 @@ namespace MyApp.ViewModels
         {
             Action = async () =>
             {
-                if (await Auth.IsConnected())
+                if (await _auth.IsConnected())
                 {
-                    var flag = await Auth.LoginAsync(Username, Password);
+                    var flag = await _auth.LoginAsync(Username, Password);
 
                     if (flag)
                     {
