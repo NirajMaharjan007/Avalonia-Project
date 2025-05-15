@@ -2,7 +2,6 @@ using System;
 using System.Windows.Input;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
-using MyApp.Views;
 using MyApp.Views.Subviews;
 using ReactiveUI;
 
@@ -64,7 +63,7 @@ namespace MyApp.ViewModels
                     break;
 
                 case "Users":
-                    CurrentView = new LoginView();
+                    CurrentView = new UserView();
                     break;
 
                 // default:

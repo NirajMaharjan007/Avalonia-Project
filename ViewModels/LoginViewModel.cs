@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using MyApp.Services;
@@ -15,7 +16,8 @@ namespace MyApp.ViewModels
         private string _message = "N/A";
         private bool _error = false;
 
-        private bool _success = false;
+        private bool _rememberMe;
+
         private string _username = string.Empty;
         private string _usernameHint = string.Empty;
 
@@ -39,11 +41,7 @@ namespace MyApp.ViewModels
             get => _message;
             set => this.RaiseAndSetIfChanged(ref _message, value);
         }
-        public bool Success
-        {
-            get => _success;
-            set => this.RaiseAndSetIfChanged(ref _success, value);
-        }
+
         public bool Error
         {
             get => _error;
@@ -73,9 +71,17 @@ namespace MyApp.ViewModels
             }
         }
 
+        public bool RememberMe
+        {
+            get => _rememberMe;
+            set => this.RaiseAndSetIfChanged(ref _rememberMe, value);
+        }
+
         public ICommand ClickAction { get; }
 
         public ICommand EnterAction { get; }
+
+        public ICommand RememberAction { get; }
         public Action? Action
         {
             get => _action;
@@ -86,6 +92,8 @@ namespace MyApp.ViewModels
 
         public LoginViewModel()
         {
+            TryAutoLogin();
+
             Action = async () =>
             {
                 if (await _auth.IsConnected())
@@ -94,15 +102,18 @@ namespace MyApp.ViewModels
 
                     if (flag)
                     {
-                        Success = true;
+                        Console.WriteLine("Flag " + flag + " Remember Me " + RememberMe);
+                        if (RememberMe)
+                            SaveCredentials();
+                        else
+                            ClearSavedCredentials();
+
                         Error = false;
-                        Message = "Login Successfull";
                         LoginSucceeded?.Invoke(this, EventArgs.Empty);
                     }
                     else
                     {
                         Error = true;
-                        Success = false;
                         Message = "Invalid credentials";
                     }
                 }
@@ -116,6 +127,34 @@ namespace MyApp.ViewModels
 
             ClickAction = new RelayCommand(Action);
             EnterAction = new RelayCommand(Action);
+            RememberAction = new RelayCommand(() =>
+            {
+                RememberMe = !_rememberMe;
+            });
+        }
+
+        private void SaveCredentials()
+        {
+            string data = Username + "->" + Password;
+            File.WriteAllText("remember.log", data);
+        }
+
+        private void ClearSavedCredentials()
+        {
+            if (File.Exists("remember.log"))
+                File.Delete("remember.log");
+        }
+
+        private void TryAutoLogin()
+        {
+            if (File.Exists("remember.log"))
+            {
+                string data = File.ReadAllText("remember.log");
+                string[] credentials = data.Split("->");
+                Username = credentials[0];
+                Password = credentials[1];
+                RememberMe = true;
+            }
         }
     }
 }
