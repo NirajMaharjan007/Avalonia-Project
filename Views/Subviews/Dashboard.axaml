@@ -13,7 +13,7 @@
     <StackPanel
         x:Name="MainLayout"
         Margin="16"
-        HorizontalAlignment="Stretch"
+        HorizontalAlignment="Center"
         VerticalAlignment="Top"
         Orientation="Vertical">
 

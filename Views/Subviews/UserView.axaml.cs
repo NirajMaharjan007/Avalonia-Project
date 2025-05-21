@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.VisualTree;
+using MyApp.ViewModels;
 
 namespace MyApp.Views.Subviews
 {
@@ -9,8 +10,8 @@ namespace MyApp.Views.Subviews
     {
         public UserView()
         {
-            AvaloniaXamlLoader.Load(this);
             InitializeComponent();
+            DataContext = new UserViewModel();
 
             AttachedToVisualTree += (_, __) =>
             {

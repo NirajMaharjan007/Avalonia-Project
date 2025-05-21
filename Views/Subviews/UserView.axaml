@@ -9,6 +9,7 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:vm="clr-namespace:MyApp.ViewModels"
     xmlns:wpf="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+    x:DataType="vm:UserViewModel"
     mc:Ignorable="d">
 
     <StackPanel
@@ -52,6 +53,7 @@
                                 Padding="12"
                                 wpf:TextFieldAssist.Label="Email Address"
                                 Classes="clearButton"
+                                Text="{Binding Email, Mode=TwoWay}"
                                 UseFloatingWatermark="True" />
 
                             <TextBox
@@ -59,6 +61,7 @@
                                 Padding="12"
                                 wpf:TextFieldAssist.Label="Username"
                                 Classes="clearButton"
+                                Text="{Binding Username, Mode=TwoWay}"
                                 UseFloatingWatermark="True" />
                             <Grid
                                 HorizontalAlignment="Stretch"
@@ -72,6 +75,7 @@
                                     wpf:TextFieldAssist.Label="Password"
                                     Classes="revealPasswordButton"
                                     PasswordChar="•"
+                                    Text="{Binding Password, Mode=TwoWay}"
                                     UseFloatingWatermark="True" />
 
                                 <TextBox
@@ -81,6 +85,7 @@
                                     wpf:TextFieldAssist.Label="Confirm Password"
                                     Classes="revealPasswordButton"
                                     PasswordChar="•"
+                                    Text="{Binding ConfirmPassword, Mode=TwoWay}"
                                     UseFloatingWatermark="True" />
                             </Grid>
                             <Grid
@@ -94,6 +99,7 @@
                                     Padding="12"
                                     wpf:TextFieldAssist.Label="First Name"
                                     Classes="clearButton"
+                                    Text="{Binding FirstName, Mode=TwoWay}"
                                     UseFloatingWatermark="True" />
 
                                 <TextBox
@@ -102,6 +108,7 @@
                                     Padding="12"
                                     wpf:TextFieldAssist.Label="Last Name"
                                     Classes="clearButton"
+                                    Text="{Binding LastName, Mode=TwoWay}"
                                     UseFloatingWatermark="True" />
                             </Grid>
                         </StackPanel>
@@ -112,6 +119,7 @@
                             HorizontalAlignment="Center"
                             Background="#1D4ED8"
                             Classes="rounded"
+                            Command="{Binding ClickCommand}"
                             Foreground="White">
                             <Button.Content>
                                 <StackPanel
