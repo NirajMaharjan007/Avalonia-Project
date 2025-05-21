@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -21,6 +22,18 @@ namespace MyApp.Services
 
         [JsonPropertyName("is_active")]
         public bool IsActive { get; set; }
+
+        [JsonPropertyName("first_name")]
+        public string? FirstName { get; set; }
+
+        [JsonPropertyName("last_name")]
+        public string? LastName { get; set; }
+
+        [JsonPropertyName("email")]
+        public string? Email { get; set; }
+
+        [JsonIgnore]
+        public string? Password { get; set; }
     }
 
     public class User
@@ -86,6 +99,27 @@ namespace MyApp.Services
             {
                 Console.WriteLine("ERROR! " + ex.Message);
                 return -1;
+            }
+        }
+
+        internal async Task<bool> CreateUser(UserData data)
+        {
+            try
+            {
+                var content = new StringContent(
+                    JsonSerializer.Serialize(data),
+                    Encoding.UTF8,
+                    "application/json"
+                );
+                var response = await _httpClient.PostAsync($"{API}/signup/", content);
+                response.EnsureSuccessStatusCode();
+
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
             }
         }
     }
