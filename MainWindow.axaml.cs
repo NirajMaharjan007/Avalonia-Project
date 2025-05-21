@@ -41,6 +41,7 @@ public partial class MainWindow : Window
         Height = 720;
         CanResize = true;
 
-        WindowStartupLocation = WindowStartupLocation.CenterScreen;
+        WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        Closing += (s, e) => Auth.Dispose();
     }
 }
