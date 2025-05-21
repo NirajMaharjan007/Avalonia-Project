@@ -32,7 +32,7 @@ namespace MyApp.Services
         [JsonPropertyName("email")]
         public string? Email { get; set; }
 
-        [JsonIgnore]
+        [JsonPropertyName("password")]
         public string? Password { get; set; }
     }
 
@@ -111,7 +111,7 @@ namespace MyApp.Services
                     Encoding.UTF8,
                     "application/json"
                 );
-                var response = await _httpClient.PostAsync($"{API}/signup/", content);
+                var response = await _httpClient.PostAsync($"{API}signup/", content);
                 response.EnsureSuccessStatusCode();
 
                 return response.IsSuccessStatusCode;

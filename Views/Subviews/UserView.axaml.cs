@@ -1,17 +1,70 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Avalonia.VisualTree;
+using Material.Styles.Assists;
 using MyApp.ViewModels;
 
 namespace MyApp.Views.Subviews
 {
     public partial class UserView : UserControl
     {
+        private readonly UserViewModel _content = new();
+
+        private void Verification()
+        {
+            EmailBox.PropertyChanged += (sender, args) =>
+            {
+                if (args.Property == TextBox.TextProperty)
+                {
+                    if (!_content.IsValidEmail)
+                    {
+                        EmailBox.SetValue(
+                            TextFieldAssist.HintsProperty,
+                            "Enter a valid email address"
+                        );
+                    }
+                    else
+                        EmailBox.ClearValue(TextFieldAssist.HintsProperty);
+                }
+            };
+
+            ConfirmPassword.PropertyChanged += (sender, args) =>
+            {
+                if (args.Property == TextBox.TextProperty)
+                {
+                    if (!_content.IsSamePassword)
+                    {
+                        ConfirmPassword.SetValue(
+                            TextFieldAssist.HintsProperty,
+                            "Password does not match"
+                        );
+                    }
+                    else
+                        ConfirmPassword.ClearValue(TextFieldAssist.HintsProperty);
+                }
+            };
+
+            Password.PropertyChanged += (sender, args) =>
+            {
+                if (args.Property == TextBox.TextProperty)
+                {
+                    if (!_content.IsSamePassword)
+                    {
+                        ConfirmPassword.SetValue(
+                            TextFieldAssist.HintsProperty,
+                            "Password does not match"
+                        );
+                    }
+                    else
+                        ConfirmPassword.ClearValue(TextFieldAssist.HintsProperty);
+                }
+            };
+        }
+
         public UserView()
         {
             InitializeComponent();
-            DataContext = new UserViewModel();
+            DataContext = _content;
 
             AttachedToVisualTree += (_, __) =>
             {
@@ -32,6 +85,8 @@ namespace MyApp.Views.Subviews
                     window.PropertyChanged += updateMinWidth;
                 }
             };
+
+            Verification();
         }
     }
 }

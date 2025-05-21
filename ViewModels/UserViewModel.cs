@@ -1,7 +1,7 @@
 using System;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
-using MongoDB.Bson;
 using MyApp.Services;
 using ReactiveUI;
 
@@ -51,13 +51,29 @@ namespace MyApp.ViewModels
             get => _lastName;
             set => this.RaiseAndSetIfChanged(ref _lastName, value);
         }
+
+        public bool IsValidEmail
+        {
+            get
+            {
+                var pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+                return Regex.IsMatch(Email, pattern, RegexOptions.IgnoreCase);
+            }
+        }
+
+        public bool IsSamePassword
+        {
+            get { return Password.Equals(ConfirmPassword); }
+        }
+
+        public bool Flag { get; private set; }
         public ICommand ClickCommand { get; }
 
         public UserViewModel()
         {
-            ClickCommand = new RelayCommand(() =>
+            ClickCommand = new RelayCommand(async () =>
             {
-                Console.WriteLine("GG");
+                Flag = IsValidEmail && IsSamePassword;
                 var data = new UserData
                 {
                     Username = Username,
@@ -66,12 +82,16 @@ namespace MyApp.ViewModels
                     Email = Email,
                     Password = Password,
                 };
-                Console.WriteLine("Hello\n");
-                Console.WriteLine(data.Username + "This User");
-                Console.WriteLine(data.FirstName + "This FN");
-                Console.WriteLine(data.LastName + "This LN");
-                Console.WriteLine(data.Email + "This EMail");
-                Console.WriteLine(data.Password + "This Pass");
+
+                if (Flag)
+                {
+                    await new User().CreateUser(data);
+                    Console.WriteLine("Flag " + Flag + " DONE");
+                }
+                else
+                {
+                    Console.WriteLine("Flag " + Flag);
+                }
             });
         }
     }
