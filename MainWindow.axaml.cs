@@ -40,6 +40,7 @@ public partial class MainWindow : Window
         Width = 1200;
         Height = 720;
         CanResize = true;
+
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
     }
 }

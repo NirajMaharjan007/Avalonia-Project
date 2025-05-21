@@ -14,7 +14,20 @@
         HorizontalAlignment="Stretch"
         VerticalAlignment="Top"
         Orientation="Vertical">
-        <TextBlock Text="GRID" />
+        <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <TabControl.Items>
+                <TabItem Header="Item 1">
+                    <TextBlock Classes="Centered" Text="Page 1" />
+                </TabItem>
+                <TabItem Header="Item 2">
+                    <TextBlock Classes="Centered" Text="Page 2" />
+                </TabItem>
+                <TabItem Header="Item 3">
+                    <TextBlock Classes="Centered" Text="Page 3" />
+                </TabItem>
+            </TabControl.Items>
+        </TabControl>
+
     </StackPanel>
 
 </UserControl>

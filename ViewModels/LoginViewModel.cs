@@ -145,7 +145,7 @@ namespace MyApp.ViewModels
                 File.Delete("remember.log");
         }
 
-        private void TryAutoLogin()
+        private async void TryAutoLogin()
         {
             if (File.Exists("remember.log"))
             {
@@ -154,6 +154,13 @@ namespace MyApp.ViewModels
                 Username = credentials[0];
                 Password = credentials[1];
                 RememberMe = true;
+
+                var flag = await _auth.IsConnected() && await _auth.LoginAsync(Username, Password);
+
+                if (flag)
+                    LoginSucceeded?.Invoke(this, EventArgs.Empty);
+                else
+                    ClearSavedCredentials();
             }
         }
     }
