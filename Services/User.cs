@@ -111,6 +111,7 @@ namespace MyApp.Services
                     Encoding.UTF8,
                     "application/json"
                 );
+
                 var response = await _httpClient.PostAsync($"{API}signup/", content);
                 response.EnsureSuccessStatusCode();
 
