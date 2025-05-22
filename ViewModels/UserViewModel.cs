@@ -1,7 +1,9 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
+using MyApp.Misc.Dialogs;
 using MyApp.Services;
 using ReactiveUI;
 
@@ -66,14 +68,35 @@ namespace MyApp.ViewModels
             get { return Password.Equals(ConfirmPassword); }
         }
 
+        public int X { get; set; }
+        public int Y { get; set; }
+
         public bool Flag { get; private set; }
         public ICommand ClickCommand { get; }
 
         public UserViewModel()
         {
-            ClickCommand = new RelayCommand(async () =>
+            ClickCommand = new RelayCommand(() =>
             {
-                Flag = IsValidEmail && IsSamePassword;
+                try
+                {
+                    Alert alert = new()
+                    {
+                        IsVisible = true,
+                        Width = 400,
+                        Height = 320,
+                        CanResize = false,
+                    };
+                    alert.SetPostion(X, Y);
+
+                    alert.Show();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                /* Flag = IsValidEmail && IsSamePassword;
                 var data = new UserData
                 {
                     Username = Username,
@@ -83,15 +106,23 @@ namespace MyApp.ViewModels
                     Password = Password,
                 };
 
+
                 if (Flag)
                 {
-                    await new User().CreateUser(data);
-                    Console.WriteLine("Flag " + Flag + " DONE");
+                    bool tasks = await new User().CreateUser(data);
+                    if (tasks)
+                    {
+                        Console.WriteLine("Flag " + Flag + " DONE");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Flag " + Flag + " Failed");
+                    }
                 }
                 else
                 {
                     Console.WriteLine("Flag " + Flag);
-                }
+                } */
             });
         }
     }

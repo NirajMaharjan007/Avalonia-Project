@@ -1,4 +1,5 @@
 using System;
+using Avalonia;
 using Avalonia.Controls;
 using MyApp.Services;
 using MyApp.ViewModels;
@@ -31,7 +32,11 @@ public partial class MainWindow : Window
         // Show login view initially
         Content = _loginView;
 
-        Closing += (s, e) => Auth.Dispose();
+        Closing += (s, e) =>
+        {
+            Auth.Dispose();
+            Environment.Exit(0);
+        };
     }
 
     private void OnLoginSucceeded(object? sender, EventArgs e)
@@ -41,7 +46,11 @@ public partial class MainWindow : Window
         Height = 720;
         CanResize = true;
 
-        WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        Closing += (s, e) => Auth.Dispose();
+        var screen = Screens.Primary;
+        if (screen is not null)
+            Position = new PixelPoint(
+                (int)(screen.WorkingArea.Width - Width) / 2,
+                (int)(screen.WorkingArea.Height - Height) / 2 - 50
+            );
     }
 }
