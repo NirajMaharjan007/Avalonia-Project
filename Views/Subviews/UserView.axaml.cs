@@ -78,9 +78,6 @@ namespace MyApp.Views.Subviews
                         }
                     }
 
-                    _content.X = (int)window.Width / 2 + 320;
-                    _content.Y = (int)window.Height / 2 - 100;
-
                     // Initial set
                     CreateUserForm.MinWidth = window.Width - 360;
 

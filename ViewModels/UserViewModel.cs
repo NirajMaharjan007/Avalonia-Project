@@ -68,9 +68,6 @@ namespace MyApp.ViewModels
             get { return Password.Equals(ConfirmPassword); }
         }
 
-        public int X { get; set; }
-        public int Y { get; set; }
-
         public bool Flag { get; private set; }
         public ICommand ClickCommand { get; }
 
@@ -80,16 +77,9 @@ namespace MyApp.ViewModels
             {
                 try
                 {
-                    Alert alert = new()
-                    {
-                        IsVisible = true,
-                        Width = 400,
-                        Height = 320,
-                        CanResize = false,
-                    };
-                    alert.SetPostion(X, Y);
+                    Alert alert = new();
 
-                    alert.Show();
+                    // alert.Show();
                 }
                 catch (Exception ex)
                 {
