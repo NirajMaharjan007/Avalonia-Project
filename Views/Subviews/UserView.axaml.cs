@@ -81,6 +81,8 @@ namespace MyApp.Views.Subviews
                     // Initial set
                     CreateUserForm.MinWidth = window.Width - 360;
 
+                    //for Postion
+
                     // Subscribe to changes
                     window.PropertyChanged += updateMinWidth;
                 }

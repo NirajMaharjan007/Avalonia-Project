@@ -63,10 +63,7 @@ namespace MyApp.ViewModels
             }
         }
 
-        public bool IsSamePassword
-        {
-            get { return Password.Equals(ConfirmPassword); }
-        }
+        public bool IsSamePassword => Password.Equals(ConfirmPassword);
 
         public bool Flag { get; private set; }
         public ICommand ClickCommand { get; }
@@ -77,8 +74,7 @@ namespace MyApp.ViewModels
             {
                 try
                 {
-                    Alert alert = new();
-
+                    Alert alert = new(Alert.Type.Success);
                     // alert.Show();
                 }
                 catch (Exception ex)
