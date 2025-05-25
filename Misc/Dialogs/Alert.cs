@@ -1,10 +1,9 @@
-using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Platform;
 using Material.Dialog;
 using Material.Dialog.Views;
+using MyApp.Misc.Dialogs.Views;
 using static System.Console;
 
 namespace MyApp.Misc.Dialogs;
@@ -22,34 +21,35 @@ public class Alert : AlertDialogBuilderParams
     }
 
     private readonly AlertDialog _dialog = new();
-    public string Title { get; set; } = string.Empty;
 
-    public string Message { get; set; } = string.Empty;
-
-    public Alert()
+    public Alert(Type type, string message)
     {
-        Init();
-    }
-
-    public Alert(Type type)
-    {
-        Init();
+        _dialog.InitializeComponent(true);
+        _dialog.Activate();
         switch (type)
         {
             case Type.Success:
                 Title = "Success";
-                Message = "Operation completed successfully.";
-                _dialog.Title = Title;
+                Success success = new();
+                success.ContentText.Text = message;
+                success.OkayButton.Click += (sender, e) => _dialog.Close();
+
+                _dialog.Title = "Successful Operation";
+                _dialog.Content = success;
+
+                break;
+
+            case Type.Error:
+                Title = "Failed";
+                Failed fail = new();
+                fail.ContentText.Text = message;
+                fail.OkayButton.Click += (sender, e) => _dialog.Close();
+
+                _dialog.Title = "Failed Operation";
+                _dialog.Content = fail;
 
                 break;
         }
-    }
-
-    private void Init()
-    {
-        _dialog.InitializeComponent(true);
-        _dialog.Activate();
-        _dialog.Content = this;
         _dialog.IsVisible = true;
         _dialog.CanResize = false;
 
@@ -59,13 +59,11 @@ public class Alert : AlertDialogBuilderParams
     public void SetPostion(int x, int y)
     {
         WriteLine($"Position Set to {x}, {y}");
-        _dialog.Position = new Avalonia.PixelPoint(x, y);
+        _dialog.Position = new PixelPoint(x, y);
     }
 
     private void Center()
     {
-        WriteLine($"Centering");
-
         _dialog.WindowStartupLocation = WindowStartupLocation.Manual;
         if (
             Application.Current?.ApplicationLifetime

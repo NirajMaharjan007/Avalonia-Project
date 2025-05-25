@@ -74,7 +74,9 @@ namespace MyApp.ViewModels
             {
                 try
                 {
-                    Alert alert = new(Alert.Type.Success);
+                    Alert alert = new(Alert.Type.Success, "Successfully Created User");
+                    Alert failed = new(Alert.Type.Error, "Failed to Created User");
+
                     // alert.Show();
                 }
                 catch (Exception ex)
