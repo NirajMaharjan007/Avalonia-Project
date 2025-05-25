@@ -12,26 +12,6 @@ namespace MyApp.Views.Subviews
         {
             InitializeComponent();
             DataContext = new MainViewModel();
-
-            AttachedToVisualTree += (_, __) =>
-            {
-                if (this.GetVisualRoot() is Window window)
-                {
-                    void updateMinWidth(object? sender, AvaloniaPropertyChangedEventArgs e)
-                    {
-                        if (e.Property == Window.WidthProperty)
-                        {
-                            MainLayout.MinWidth = window.Width - 360;
-                        }
-                    }
-
-                    // Initial set
-                    MainLayout.MinWidth = window.Width - 360;
-
-                    // Subscribe to changes
-                    window.PropertyChanged += updateMinWidth;
-                }
-            };
         }
     }
 }

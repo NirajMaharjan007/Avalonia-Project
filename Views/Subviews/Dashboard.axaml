@@ -13,12 +13,12 @@
     <StackPanel
         x:Name="MainLayout"
         Margin="16"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Top"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
         Orientation="Vertical">
 
         <StackPanel
-            HorizontalAlignment="Stretch"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Orientation="Horizontal"
             Spacing="8">
@@ -40,6 +40,9 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Orientation="Horizontal">
+
+
+
             <!--  Cards  -->
             <controls:Card
                 MinWidth="320"
@@ -47,6 +50,9 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 CornerRadius="10">
+
+
+
 
                 <Grid
                     Margin="8,28,8,28"
@@ -75,15 +81,27 @@
                             FontSize="24"
                             Text="Total User"
                             TextAlignment="Center" />
-                        <TextBlock
-                            FontSize="28"
-                            FontWeight="Bold"
-                            Text="{Binding UserCount}"
-                            TextAlignment="Center" />
+
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <ProgressBar
+                                Width="32"
+                                Height="32"
+                                Classes="circular"
+                                Foreground="Gray"
+                                IsIndeterminate="True"
+                                IsVisible="{Binding Loading}" />
+                            <TextBlock
+                                FontSize="28"
+                                FontWeight="Bold"
+                                IsVisible="{Binding Visiblity}"
+                                Text="{Binding UserCount}"
+                                TextAlignment="Center" />
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
-
-
             </controls:Card>
 
             <controls:Card
@@ -120,11 +138,26 @@
                             FontSize="24"
                             Text="Active Total User"
                             TextAlignment="Center" />
-                        <TextBlock
-                            FontSize="28"
-                            FontWeight="Bold"
-                            Text="{Binding ActiveUserCount}"
-                            TextAlignment="Center" />
+
+
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <ProgressBar
+                                Width="32"
+                                Height="32"
+                                Classes="circular"
+                                Foreground="Gray"
+                                IsIndeterminate="True"
+                                IsVisible="{Binding Loading}" />
+                            <TextBlock
+                                FontSize="28"
+                                FontWeight="Bold"
+                                IsVisible="{Binding Visiblity}"
+                                Text="{Binding ActiveUserCount}"
+                                TextAlignment="Center" />
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </controls:Card>
@@ -133,7 +166,7 @@
         <StackPanel
             Margin="16"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             Orientation="Vertical">
             <WrapPanel>
                 <TextBlock Text="TODO DATA GRID" />

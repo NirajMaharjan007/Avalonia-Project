@@ -36,12 +36,11 @@
                         </StackPanel>
                     </TabItem.Header>
 
-
                     <StackPanel
                         x:Name="CreateUserForm"
                         Margin="12"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
 
                         <StackPanel
                             HorizontalAlignment="Stretch"
@@ -150,7 +149,7 @@
 
 
 
-                <TabItem Header="Item 2">
+                <TabItem>
                     <TabItem.Header>
                         <StackPanel
                             HorizontalAlignment="Stretch"
@@ -166,13 +165,41 @@
                         </StackPanel>
                     </TabItem.Header>
 
-                    <StackPanel>
-                        <TextBlock Text="Users" />
+                    <StackPanel
+                        Margin="12"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <WrapPanel VerticalAlignment="Top">
+                            <TextBlock Text="1D4ED8" />
+                        </WrapPanel>
                     </StackPanel>
                 </TabItem>
-                <TabItem Header="Item 3">
-                    <TextBlock Classes="Centered" Text="Page 3" />
+
+
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="12">
+
+                            <icons:MaterialIcon
+                                MinWidth="20"
+                                MinHeight="20"
+                                Kind="History" />
+                            <TextBlock VerticalAlignment="Center" Text="User's History" />
+                        </StackPanel>
+                    </TabItem.Header>
+
+                    <StackPanel
+                        Margin="12"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        <TextBlock Classes="Centered" Text="History" />
+                    </StackPanel>
                 </TabItem>
+
             </TabControl.Items>
         </TabControl>
 
