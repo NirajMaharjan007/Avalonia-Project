@@ -1,0 +1,55 @@
+<UserControl
+    x:Class="MyApp.Misc.Dialogs.Views.Failed"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:icons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    mc:Ignorable="d">
+    <StackPanel
+        Margin="0,24"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Orientation="Vertical"
+        Spacing="16">
+
+        <StackPanel
+            Margin="0,0,0,10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Stretch"
+            Orientation="Horizontal"
+            Spacing="8">
+            <icons:MaterialIcon
+                Width="20"
+                Height="20"
+                Foreground="Red"
+                Kind="CloseCircle" />
+            <TextBlock
+                FontSize="16"
+                Foreground="Red"
+                Text="Failed" />
+        </StackPanel>
+
+        <TextBlock
+            x:Name="ContentText"
+            Margin="0,0,0,10"
+            FontSize="14"
+            FontWeight="Bold"
+            Foreground="Red"
+            Text="Null"
+            TextAlignment="Center" />
+
+
+        <Button
+            x:Name="OkayButton"
+            Margin="0,0,0,10"
+            Padding="20,16"
+            Background="Red"
+            Content="OK"
+            Foreground="White"
+            Theme="{StaticResource MaterialFlatButton}" />
+
+    </StackPanel>
+</UserControl>
