@@ -28,6 +28,11 @@ namespace MyApp.Views.Subviews
                 }
             };
 
+            EmailBox.TextChanged += (_, __) =>
+            {
+                UserBox.Text = EmailBox.Text?.Split('@')[0];
+            };
+
             ConfirmPassword.PropertyChanged += (sender, args) =>
             {
                 if (args.Property == TextBox.TextProperty)

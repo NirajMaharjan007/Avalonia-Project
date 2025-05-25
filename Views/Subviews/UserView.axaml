@@ -58,6 +58,7 @@
                                 UseFloatingWatermark="True" />
 
                             <TextBox
+                                x:Name="UserBox"
                                 Margin="0,10"
                                 Padding="12"
                                 wpf:TextFieldAssist.Label="Username"

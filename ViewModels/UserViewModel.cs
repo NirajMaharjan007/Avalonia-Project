@@ -70,47 +70,45 @@ namespace MyApp.ViewModels
 
         public UserViewModel()
         {
-            ClickCommand = new RelayCommand(() =>
+            ClickCommand = new RelayCommand(async () =>
             {
                 try
                 {
-                    Alert alert = new(Alert.Type.Success, "Successfully Created User");
-                    Alert failed = new(Alert.Type.Error, "Failed to Created User");
+                    Flag = IsValidEmail && IsSamePassword;
+                    var data = new UserData
+                    {
+                        Username = Username,
+                        FirstName = FirstName,
+                        LastName = LastName,
+                        Email = Email,
+                        Password = Password,
+                    };
 
-                    // alert.Show();
+                    if (Flag)
+                    {
+                        bool tasks = await new User().CreateUser(data);
+                        if (tasks)
+                        {
+                            Console.WriteLine("Flag " + Flag + " DONE");
+                            _ = new Alert(Alert.Type.Success, "Successfully Created User");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Flag " + Flag + " Failed");
+                            _ = new Alert(Alert.Type.Error, "Failed to Created User");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Flag " + Flag);
+                        _ = new Alert(Alert.Type.Error, "Not Valid Input or Empty Input");
+                    }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                    _ = new Alert(Alert.Type.Error, ex.Message);
                 }
-
-                /* Flag = IsValidEmail && IsSamePassword;
-                var data = new UserData
-                {
-                    Username = Username,
-                    FirstName = FirstName,
-                    LastName = LastName,
-                    Email = Email,
-                    Password = Password,
-                };
-
-
-                if (Flag)
-                {
-                    bool tasks = await new User().CreateUser(data);
-                    if (tasks)
-                    {
-                        Console.WriteLine("Flag " + Flag + " DONE");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Flag " + Flag + " Failed");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Flag " + Flag);
-                } */
             });
         }
     }
