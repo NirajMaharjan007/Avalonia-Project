@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -82,6 +83,8 @@ public class Alert : AlertDialogBuilderParams
     }
 
     public bool Visible => _dialog.IsVisible;
+
+    public Window Dialog => _dialog;
 
     public bool CanResize => _dialog.CanResize;
 }

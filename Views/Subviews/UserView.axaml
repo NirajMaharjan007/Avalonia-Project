@@ -129,7 +129,8 @@
                             Background="#1D4ED8"
                             Classes="rounded"
                             Command="{Binding ClickCommand}"
-                            Foreground="White">
+                            Foreground="White"
+                            IsEnabled="{Binding Enabled}">
                             <Button.Content>
                                 <StackPanel
                                     HorizontalAlignment="Center"
@@ -150,7 +151,24 @@
 
 
                 <TabItem Header="Item 2">
-                    <TextBlock Classes="Centered" Text="Page 2" />
+                    <TabItem.Header>
+                        <StackPanel
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="12">
+
+                            <icons:MaterialIcon
+                                MinWidth="20"
+                                MinHeight="20"
+                                Kind="AccountMultiple" />
+                            <TextBlock VerticalAlignment="Center" Text="View User" />
+                        </StackPanel>
+                    </TabItem.Header>
+
+                    <StackPanel>
+                        <TextBlock Text="Users" />
+                    </StackPanel>
                 </TabItem>
                 <TabItem Header="Item 3">
                     <TextBlock Classes="Centered" Text="Page 3" />

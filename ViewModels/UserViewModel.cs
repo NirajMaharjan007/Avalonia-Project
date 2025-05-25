@@ -18,6 +18,8 @@ namespace MyApp.ViewModels
         private string _firstName = string.Empty;
         private string _lastName = string.Empty;
 
+        private bool _enable = true;
+
         public string Username
         {
             get => _username;
@@ -68,6 +70,12 @@ namespace MyApp.ViewModels
         public bool Flag { get; private set; }
         public ICommand ClickCommand { get; }
 
+        public bool Enabled
+        {
+            get => _enable;
+            set => this.RaiseAndSetIfChanged(ref _enable, value);
+        }
+
         public UserViewModel()
         {
             ClickCommand = new RelayCommand(async () =>
@@ -84,30 +92,43 @@ namespace MyApp.ViewModels
                         Password = Password,
                     };
 
+                    Enabled = false;
                     if (Flag)
                     {
                         bool tasks = await new User().CreateUser(data);
                         if (tasks)
                         {
                             Console.WriteLine("Flag " + Flag + " DONE");
-                            _ = new Alert(Alert.Type.Success, "Successfully Created User");
+                            Alert alert = new(Alert.Type.Success, "Successfully Created User");
+                            alert.Dialog.Closing += (_, __) =>
+                            {
+                                Enabled = true;
+                            };
                         }
                         else
                         {
                             Console.WriteLine("Flag " + Flag + " Failed");
-                            _ = new Alert(Alert.Type.Error, "Failed to Created User");
+                            Alert fail = new(Alert.Type.Error, "Failed to Created User");
+                            fail.Dialog.Closing += (_, __) =>
+                            {
+                                Enabled = true;
+                            };
                         }
                     }
                     else
                     {
                         Console.WriteLine("Flag " + Flag);
-                        _ = new Alert(Alert.Type.Error, "Not Valid Input or Empty Input");
+                        Alert fail = new(Alert.Type.Error, "Not Valid Input or Empty Input");
+                        fail.Dialog.Closing += (_, __) =>
+                        {
+                            Enabled = true;
+                        };
                     }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    _ = new Alert(Alert.Type.Error, ex.Message);
+                    Alert fail = new(Alert.Type.Error, ex.Message);
                 }
             });
         }
