@@ -65,20 +65,14 @@ public class Alert : AlertDialogBuilderParams
 
     private void Center()
     {
-        _dialog.WindowStartupLocation = WindowStartupLocation.Manual;
-        if (
-            Application.Current?.ApplicationLifetime
-            is IClassicDesktopStyleApplicationLifetime desktopLifetime
-        )
-        {
-            var window = desktopLifetime.MainWindow;
+        _dialog.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-            if (window is not null)
-            {
-                int x = (int)window.Width / 2 + 200,
-                    y = (int)window.Height / 2 - 100;
-                SetPostion(x, y);
-            }
+        var screen = _dialog.Screens.Primary;
+        if (screen is not null)
+        {
+            int x = screen.WorkingArea.Width / 2;
+            int y = screen.WorkingArea.Height / 2 - 200;
+            SetPostion(x, y);
         }
     }
 

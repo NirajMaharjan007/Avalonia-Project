@@ -36,13 +36,14 @@
                         </StackPanel>
                     </TabItem.Header>
 
-                    <StackPanel
-                        x:Name="CreateUserForm"
-                        Margin="12"
+                    <controls:Card
+                        Margin="24,16"
                         HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
-
+                        VerticalAlignment="Stretch"
+                        CornerRadius="8">
                         <StackPanel
+                            x:Name="CreateUserForm"
+                            Margin="20,16"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
                             Orientation="Vertical">
@@ -119,32 +120,31 @@
                                     Text="{Binding LastName, Mode=TwoWay}"
                                     UseFloatingWatermark="True" />
                             </Grid>
+                            <Button
+                                Margin="0,24,0,0"
+                                Padding="24,16"
+                                HorizontalAlignment="Center"
+                                Background="#1D4ED8"
+                                Classes="rounded"
+                                Command="{Binding ClickCommand}"
+                                Foreground="White"
+                                IsEnabled="{Binding Enabled}">
+                                <Button.Content>
+                                    <StackPanel
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Spacing="8">
+                                        <icons:MaterialIcon
+                                            MinWidth="20"
+                                            MinHeight="20"
+                                            Kind="CheckCircle" />
+                                        <TextBlock Text="Submit" TextAlignment="Center" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
                         </StackPanel>
-
-                        <Button
-                            Margin="0,20"
-                            Padding="24,16"
-                            HorizontalAlignment="Center"
-                            Background="#1D4ED8"
-                            Classes="rounded"
-                            Command="{Binding ClickCommand}"
-                            Foreground="White"
-                            IsEnabled="{Binding Enabled}">
-                            <Button.Content>
-                                <StackPanel
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Orientation="Horizontal"
-                                    Spacing="8">
-                                    <icons:MaterialIcon
-                                        MinWidth="20"
-                                        MinHeight="20"
-                                        Kind="CheckCircle" />
-                                    <TextBlock Text="Submit" TextAlignment="Center" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                    </StackPanel>
+                    </controls:Card>
                 </TabItem>
 
 
@@ -179,13 +179,12 @@
                             VerticalScrollBarVisibility="Auto">
                             <DataGrid
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Top"
+                                VerticalAlignment="Stretch"
                                 AutoGenerateColumns="False"
                                 GridLinesVisibility="None"
                                 HeadersVisibility="All"
                                 IsReadOnly="True"
-                                ItemsSource="{Binding Users}"
-                                Theme="{StaticResource MaterialDataGrid}">
+                                ItemsSource="{Binding Users}">
 
                                 <DataGrid.Columns>
                                     <DataGridTextColumn
@@ -197,7 +196,7 @@
                                         Binding="{Binding Username}"
                                         Header="Username" />
                                     <DataGridTextColumn
-                                        Width="2*"
+                                        Width="*"
                                         Binding="{Binding Email}"
                                         Header="Email" />
                                     <DataGridTextColumn

@@ -37,7 +37,7 @@
                 <StackPanel
                     Margin="16"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Stretch"
                     Spacing="24">
 
                     <StackPanel
@@ -93,11 +93,11 @@
                                 </ListBox.Styles>
                                 <ListBoxItem
                                     HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Center"
+                                    VerticalAlignment="Stretch"
                                     Tag="Dashboard">
                                     <StackPanel
                                         HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Top"
+                                        VerticalAlignment="Center"
                                         Orientation="Horizontal"
                                         Spacing="16">
                                         <icons:MaterialIcon Kind="MonitorDashboard" />
@@ -110,11 +110,11 @@
 
                                 <ListBoxItem
                                     HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Center"
+                                    VerticalAlignment="Stretch"
                                     Tag="Users">
                                     <StackPanel
                                         HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Top"
+                                        VerticalAlignment="Center"
                                         Orientation="Horizontal"
                                         Spacing="16">
                                         <icons:MaterialIcon Kind="AccountGroup" />
@@ -125,9 +125,28 @@
                                     </StackPanel>
                                 </ListBoxItem>
 
+                                <ListBoxItem
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Tag="Settings">
+                                    <StackPanel
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Spacing="16">
+                                        <icons:MaterialIcon Kind="Cog" />
+                                        <TextBlock
+                                            FontSize="20"
+                                            IsVisible="{Binding Expand}"
+                                            Text="Settings" />
+                                    </StackPanel>
+                                </ListBoxItem>
+
                             </ListBox>
                         </StackPanel>
                     </ScrollViewer>
+
+
                 </StackPanel>
             </Border>
         </SplitView.Pane>
@@ -141,24 +160,7 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Background="#f9f9f9">
-                <ContentControl Content="{Binding CurrentView}">
-                    <ContentControl.Styles>
-                        <Style Selector="ContentControl">
-                            <Style.Animations>
-                                <Animation Duration="0:0:0.3">
-                                    <KeyFrame Cue="0%">
-                                        <Setter Property="Opacity" Value="0.5" />
-                                    </KeyFrame>
-                                    <KeyFrame Cue="100%">
-                                        <Setter Property="Opacity" Value="1" />
-                                    </KeyFrame>
-                                </Animation>
-                            </Style.Animations>
-                        </Style>
-                    </ContentControl.Styles>
-                </ContentControl>
-
-
+                <ContentControl Content="{Binding CurrentView}" />
             </StackPanel>
         </SplitView.Content>
     </SplitView>
