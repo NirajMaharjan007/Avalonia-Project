@@ -169,9 +169,95 @@
                         Margin="12"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
-                        <WrapPanel VerticalAlignment="Top">
-                            <TextBlock Text="1D4ED8" />
-                        </WrapPanel>
+
+                        <ScrollViewer
+                            Margin="10"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            HorizontalScrollBarVisibility="Disabled"
+                            Theme="{StaticResource MaterialModernScrollViewer}"
+                            VerticalScrollBarVisibility="Auto">
+                            <DataGrid
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top"
+                                AutoGenerateColumns="False"
+                                GridLinesVisibility="None"
+                                HeadersVisibility="All"
+                                IsReadOnly="True"
+                                ItemsSource="{Binding Users}"
+                                Theme="{StaticResource MaterialDataGrid}">
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Id}"
+                                        Header="Id" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding Username}"
+                                        Header="Username" />
+                                    <DataGridTextColumn
+                                        Width="2*"
+                                        Binding="{Binding Email}"
+                                        Header="Email" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding FirstName}"
+                                        Header="First Name" />
+                                    <DataGridTextColumn
+                                        Width="*"
+                                        Binding="{Binding LastName}"
+                                        Header="Last Name" />
+
+                                    <DataGridTemplateColumn
+                                        Width="Auto"
+                                        CanUserReorder="True"
+                                        CanUserSort="True"
+                                        Header="Is Active">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Orientation="Horizontal">
+                                                    <icons:MaterialIcon
+                                                        Width="16"
+                                                        Height="16"
+                                                        Foreground="Green"
+                                                        IsVisible="{Binding IsActive}"
+                                                        Kind="CheckCircle" />
+                                                    <icons:MaterialIcon
+                                                        Width="16"
+                                                        Height="16"
+                                                        Foreground="Red"
+                                                        IsVisible="{Binding !IsActive}"
+                                                        Kind="CloseCircle" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+                                    <DataGridTemplateColumn Width="Auto" Header="Is Admin">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Orientation="Horizontal">
+                                                    <icons:MaterialIcon
+                                                        Width="16"
+                                                        Height="16"
+                                                        Foreground="Blue"
+                                                        IsVisible="{Binding IsAdmin}"
+                                                        Kind="Shield" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+
                     </StackPanel>
                 </TabItem>
 

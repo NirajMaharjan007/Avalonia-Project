@@ -1,6 +1,5 @@
-using Avalonia;
+using System.Text.RegularExpressions;
 using Avalonia.Controls;
-using Avalonia.VisualTree;
 using Material.Styles.Assists;
 using MyApp.ViewModels;
 
@@ -30,7 +29,9 @@ namespace MyApp.Views.Subviews
 
             EmailBox.TextChanged += (_, __) =>
             {
-                UserBox.Text = EmailBox.Text?.Split('@')[0];
+                // UserBox.Text = EmailBox.Text?.Split('@')[0];
+
+                UserBox.Text = MyRegex().Replace(EmailBox.Text?.Split('@')[0] ?? "", "");
             };
 
             ConfirmPassword.PropertyChanged += (sender, args) =>
@@ -73,5 +74,8 @@ namespace MyApp.Views.Subviews
 
             Verification();
         }
+
+        [GeneratedRegex(@"[^a-zA-Z0-9]")]
+        private static partial Regex MyRegex();
     }
 }

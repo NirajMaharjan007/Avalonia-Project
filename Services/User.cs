@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyApp.Services
 {
-    class UserData
+    public class UserData
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -121,6 +121,23 @@ namespace MyApp.Services
             {
                 Console.WriteLine(ex.Message);
                 return false;
+            }
+        }
+
+        internal async Task<List<UserData>> GetUsers()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync($"{API}");
+                response.EnsureSuccessStatusCode();
+                var content = await response.Content.ReadAsStreamAsync();
+                var users = JsonSerializer.Deserialize<List<UserData>>(content);
+                return users ?? new();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new();
             }
         }
     }

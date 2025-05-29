@@ -2,6 +2,7 @@
      x:Class="MyApp.App"
      xmlns="https://github.com/avaloniaui"
      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:dataGrid="clr-namespace:Material.Avalonia.DataGrid"
      xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
      xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
      RequestedThemeVariant="Light">
@@ -12,5 +13,7 @@
                BaseTheme="Light"
                PrimaryColor="Blue"
                SecondaryColor="Indigo" />
+
+          <StyleInclude Source="avares://Material.Avalonia.DataGrid/DataGrid.xaml" />
      </Application.Styles>
 </Application>

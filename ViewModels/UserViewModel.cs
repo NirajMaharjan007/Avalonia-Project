@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Avalonia.Controls;
@@ -76,8 +77,23 @@ namespace MyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _enable, value);
         }
 
+        public ObservableCollection<UserData> Users { get; set; } = new();
+
+        private async void Fetch()
+        {
+            var data = await new User().GetUsers();
+
+            if (data != null)
+            {
+                foreach (var user in data)
+                    Users.Add(user);
+            }
+        }
+
         public UserViewModel()
         {
+            Fetch();
+
             ClickCommand = new RelayCommand(async () =>
             {
                 try
