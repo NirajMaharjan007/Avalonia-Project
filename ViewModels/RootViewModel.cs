@@ -66,6 +66,10 @@ namespace MyApp.ViewModels
                     CurrentView = new UserView();
                     break;
 
+                case "Settings":
+                    CurrentView = new SettingView();
+                    break;
+
                 // default:
                 //     CurrentView = new Dashboard();
             }

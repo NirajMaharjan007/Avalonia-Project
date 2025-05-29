@@ -165,13 +165,13 @@
                         </StackPanel>
                     </TabItem.Header>
 
-                    <StackPanel
-                        Margin="12"
+                    <controls:Card
+                        Margin="24,16"
                         HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
-
+                        VerticalAlignment="Stretch"
+                        CornerRadius="8">
                         <ScrollViewer
-                            Margin="10"
+                            Margin="12"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             HorizontalScrollBarVisibility="Disabled"
@@ -256,8 +256,8 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </ScrollViewer>
+                    </controls:Card>
 
-                    </StackPanel>
                 </TabItem>
 
 
