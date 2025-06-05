@@ -37,13 +37,13 @@
                     </TabItem.Header>
 
                     <controls:Card
-                        Margin="24,16"
+                        Margin="10"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         CornerRadius="8">
                         <StackPanel
                             x:Name="CreateUserForm"
-                            Margin="20,16"
+                            Margin="16"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
                             Orientation="Vertical">
@@ -166,12 +166,11 @@
                     </TabItem.Header>
 
                     <controls:Card
-                        Margin="24,16"
+                        Margin="10"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         CornerRadius="8">
                         <ScrollViewer
-                            Margin="12"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             HorizontalScrollBarVisibility="Disabled"
@@ -196,7 +195,7 @@
                                         Binding="{Binding Username}"
                                         Header="Username" />
                                     <DataGridTextColumn
-                                        Width="*"
+                                        Width="3*"
                                         Binding="{Binding Email}"
                                         Header="Email" />
                                     <DataGridTextColumn

@@ -9,13 +9,33 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     mc:Ignorable="d">
 
-    <WrapPanel
+    <StackPanel
+        x:Name="MainLayout"
+        Margin="16"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
         Orientation="Vertical">
+
+        <StackPanel
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Orientation="Horizontal"
+            Spacing="16">
+            <icons:MaterialIcon
+                Width="28"
+                Height="28"
+                Kind="Cog" />
+
+            <TextBlock
+                FontSize="28"
+                FontWeight="Bold"
+                Text="Settings"
+                TextAlignment="Left" />
+        </StackPanel>
+
         <controls:Card
             Margin="16"
-            HorizontalAlignment="Center"
+            HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             CornerRadius="8">
             <StackPanel
@@ -27,6 +47,6 @@
             </StackPanel>
 
         </controls:Card>
-    </WrapPanel>
+    </StackPanel>
 
 </UserControl>
