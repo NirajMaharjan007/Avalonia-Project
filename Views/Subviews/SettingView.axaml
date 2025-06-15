@@ -7,6 +7,7 @@
     xmlns:icons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:wpf="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
     mc:Ignorable="d">
 
     <StackPanel
@@ -32,21 +33,60 @@
                 Text="Settings"
                 TextAlignment="Left" />
         </StackPanel>
-
-        <controls:Card
-            Margin="16"
+        <TabControl
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-            CornerRadius="8">
-            <StackPanel
-                Margin="24,16"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Center"
-                Orientation="Vertical">
-                <TextBlock Text="1D4ED8" />
-            </StackPanel>
+            wpf:TabControlAssist.TabHeaderInactiveBrush="Transparent">
+            <TabControl.Items>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="12">
 
-        </controls:Card>
+                            <icons:MaterialIcon
+                                MinWidth="20"
+                                MinHeight="20"
+                                Kind="AccountDetails" />
+                            <TextBlock VerticalAlignment="Center" Text="Admin Details" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <controls:Card
+                        Margin="16"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        CornerRadius="8">
+                        <StackPanel
+                            Margin="24,16"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical"
+                            Spacing="4">
+
+                            <TextBlock
+                                Margin="0,0,0,8"
+                                FontSize="20"
+                                FontWeight="Bold"
+                                Text="Admin Details" />
+
+                            <TextBlock Text="Username: niraj007" />
+                            <TextBlock Text="Email: niraj.mhrjn770@gmail.com" />
+                            <TextBlock Text="Is Superuser: True" />
+                            <TextBlock Text="Is Staff: True" />
+                            <TextBlock Text="Is Active: True" />
+                            <TextBlock Text="Last Login: 2025-05-03 15:19:29" />
+                            <TextBlock Text="Date Joined: 2025-03-28 18:12:49" />
+
+                        </StackPanel>
+                    </controls:Card>
+
+                </TabItem>
+            </TabControl.Items>
+
+        </TabControl>
+
     </StackPanel>
 
 </UserControl>

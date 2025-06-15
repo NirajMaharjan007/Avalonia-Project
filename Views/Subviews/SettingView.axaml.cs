@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using MyApp.ViewModels;
 
 namespace MyApp.Views.Subviews
 {
@@ -7,6 +8,8 @@ namespace MyApp.Views.Subviews
         public SettingView()
         {
             InitializeComponent();
+
+            DataContext = new SettingViewModel();
         }
     }
 }
