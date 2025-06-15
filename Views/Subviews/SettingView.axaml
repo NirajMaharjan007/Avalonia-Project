@@ -57,31 +57,104 @@
                         Margin="16"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
+                        Background="White"
                         CornerRadius="8">
                         <StackPanel
-                            Margin="24,16"
                             HorizontalAlignment="Stretch"
-                            VerticalAlignment="Center"
-                            Orientation="Vertical"
-                            Spacing="4">
+                            VerticalAlignment="Stretch"
+                            Spacing="16">
+                            <!--  Header  -->
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock
+                                    Margin="16"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Foreground="Black"
+                                    Text="User database" />
+                                <TextBlock
+                                    Margin="16,0"
+                                    FontSize="16"
+                                    Foreground="Gray"
+                                    Text="Details and informations about user." />
+                            </StackPanel>
 
-                            <TextBlock
-                                Margin="0,0,0,8"
-                                FontSize="20"
-                                FontWeight="Bold"
-                                Text="Admin Details" />
+                            <!--  Details Grid  -->
+                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                                <StackPanel.Styles>
+                                    <Style Selector="TabControl TextBlock">
+                                        <Setter Property="Margin" Value="24" />
+                                    </Style>
+                                </StackPanel.Styles>
 
-                            <TextBlock Text="Username: niraj007" />
-                            <TextBlock Text="Email: niraj.mhrjn770@gmail.com" />
-                            <TextBlock Text="Is Superuser: True" />
-                            <TextBlock Text="Is Staff: True" />
-                            <TextBlock Text="Is Active: True" />
-                            <TextBlock Text="Last Login: 2025-05-03 15:19:29" />
-                            <TextBlock Text="Date Joined: 2025-03-28 18:12:49" />
+                                <!--  Row Template  -->
+                                <Grid Background="#F9FAFB">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
+                                    <TextBlock Foreground="Gray" Text="Full name" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Foreground="Black"
+                                        Text="Mickael Poulaz" />
+                                </Grid>
+
+                                <Grid Background="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Foreground="Gray" Text="Best techno" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Foreground="Black"
+                                        Text="React JS" />
+                                </Grid>
+
+                                <Grid Background="#F9FAFB">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Foreground="Gray" Text="Email address" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Foreground="Black"
+                                        Text="m.poul@example.com" />
+                                </Grid>
+
+                                <Grid Background="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Foreground="Gray" Text="Salary" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Foreground="Black"
+                                        Text="$10,000" />
+                                </Grid>
+
+                                <Grid Background="#F9FAFB">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Foreground="Gray" Text="About" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Foreground="Black"
+                                        Text="To get social media testimonials like these, keep your customers engaged with your social media accounts by posting regularly yourself."
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                            </StackPanel>
                         </StackPanel>
                     </controls:Card>
-
                 </TabItem>
             </TabControl.Items>
 
