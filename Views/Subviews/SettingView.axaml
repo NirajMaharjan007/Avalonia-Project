@@ -7,7 +7,9 @@
     xmlns:icons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:vm="clr-namespace:MyApp.ViewModels"
     xmlns:wpf="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+    x:DataType="vm:SettingViewModel"
     mc:Ignorable="d">
 
     <StackPanel
@@ -93,11 +95,11 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Foreground="Gray" Text="Full name" />
+                                    <TextBlock Foreground="Gray" Text="User Id" />
                                     <TextBlock
                                         Grid.Column="1"
                                         Foreground="Black"
-                                        Text="Mickael Poulaz" />
+                                        Text="{Binding Id}" />
                                 </Grid>
 
                                 <Grid Background="White">
@@ -106,11 +108,11 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Foreground="Gray" Text="Best techno" />
+                                    <TextBlock Foreground="Gray" Text="Real Full Name" />
                                     <TextBlock
                                         Grid.Column="1"
                                         Foreground="Black"
-                                        Text="React JS" />
+                                        Text="{Binding Name}" />
                                 </Grid>
 
                                 <Grid Background="#F9FAFB">
@@ -119,11 +121,11 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Foreground="Gray" Text="Email address" />
+                                    <TextBlock Foreground="Gray" Text="User Name" />
                                     <TextBlock
                                         Grid.Column="1"
                                         Foreground="Black"
-                                        Text="m.poul@example.com" />
+                                        Text="{Binding Username}" />
                                 </Grid>
 
                                 <Grid Background="White">
@@ -132,11 +134,11 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Foreground="Gray" Text="Salary" />
+                                    <TextBlock Foreground="Gray" Text="Email" />
                                     <TextBlock
                                         Grid.Column="1"
                                         Foreground="Black"
-                                        Text="$10,000" />
+                                        Text="{Binding Email}" />
                                 </Grid>
 
                                 <Grid Background="#F9FAFB">
@@ -145,11 +147,11 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Foreground="Gray" Text="About" />
+                                    <TextBlock Foreground="Gray" Text="Joined On" />
                                     <TextBlock
                                         Grid.Column="1"
                                         Foreground="Black"
-                                        Text="To get social media testimonials like these, keep your customers engaged with your social media accounts by posting regularly yourself."
+                                        Text="{Binding CreatedOn}"
                                         TextWrapping="Wrap" />
                                 </Grid>
                             </StackPanel>
