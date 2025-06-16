@@ -34,6 +34,9 @@ namespace MyApp.Services
 
         [JsonPropertyName("password")]
         public string? Password { get; set; }
+
+        [JsonPropertyName("date_joined")]
+        public string? CreatedOn { get; set; }
     }
 
     public class User
@@ -81,6 +84,23 @@ namespace MyApp.Services
                 Console.WriteLine("Error  > parsing JSON: " + ex.Message);
                 Console.WriteLine("Extra> " + ex.Source, ex.StackTrace);
                 return -1;
+            }
+        }
+
+        internal async Task<UserData> GetUser(int id)
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync($"{API}{id}/");
+                response.EnsureSuccessStatusCode();
+                var content = await response.Content.ReadAsStreamAsync();
+                var users = JsonSerializer.Deserialize<UserData>(content);
+                return users ?? new();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new();
             }
         }
 

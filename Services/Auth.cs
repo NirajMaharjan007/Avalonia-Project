@@ -26,14 +26,14 @@ namespace MyApp.Services
 
     public class Auth
     {
-        private int _id = 0;
+        private static int _id = 0;
         private User _user = new();
         private const string API = IApi.BASE_URL + "user/";
         private static readonly HttpClient _httpClient = new(
             new SocketsHttpHandler() { PooledConnectionLifetime = TimeSpan.FromMinutes(5) }
         );
 
-        public int UserId
+        public static int UserId
         {
             get => _id;
             private set => _id = value;

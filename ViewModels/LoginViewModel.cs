@@ -147,20 +147,29 @@ namespace MyApp.ViewModels
 
         private async void TryAutoLogin()
         {
-            if (File.Exists("remember.log"))
+            try
             {
-                string data = File.ReadAllText("remember.log");
-                string[] credentials = data.Split("->");
-                Username = credentials[0];
-                Password = credentials[1];
-                RememberMe = true;
+                if (File.Exists("remember.log"))
+                {
+                    string data = File.ReadAllText("remember.log");
+                    string[] credentials = data.Split("->");
+                    Username = credentials[0];
+                    Password = credentials[1];
+                    RememberMe = true;
 
-                var flag = await _auth.IsConnected() && await _auth.LoginAsync(Username, Password);
+                    var flag =
+                        await _auth.IsConnected() && await _auth.LoginAsync(Username, Password);
 
-                if (flag)
-                    LoginSucceeded?.Invoke(this, EventArgs.Empty);
-                else
-                    ClearSavedCredentials();
+                    if (flag)
+                        LoginSucceeded?.Invoke(this, EventArgs.Empty);
+                    else
+                        ClearSavedCredentials();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ClearSavedCredentials();
             }
         }
     }
