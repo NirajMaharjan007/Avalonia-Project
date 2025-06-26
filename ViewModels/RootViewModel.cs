@@ -54,8 +54,6 @@ namespace MyApp.ViewModels
 
         private void OnMenuItemSelected(ListBoxItem? item)
         {
-            Console.WriteLine("item>" + item?.Tag);
-
             switch (item?.Tag)
             {
                 case "Dashboard":
@@ -70,11 +68,11 @@ namespace MyApp.ViewModels
                     CurrentView = new SettingView();
                     break;
 
-                // default:
-                //     CurrentView = new Dashboard();
+                case "Logout":
+                    CurrentView = new Dashboard();
+                    break;
             }
-
-            Console.WriteLine("item>" + item?.ToString());
+            Console.WriteLine("item>" + item?.Tag);
         }
     }
 }

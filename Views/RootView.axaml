@@ -142,6 +142,32 @@
                                     </StackPanel>
                                 </ListBoxItem>
 
+                                <ListBoxItem
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Tag="Logout">
+                                    <ListBoxItem.Styles>
+                                        <Style Selector="ListBoxItem:pointerover">
+                                            <Setter Property="Background" Value="#ffe6e8" />
+                                        </Style>
+                                        <Style Selector="ListBoxItem:selected">
+                                            <Setter Property="Background" Value="#FFCDD2" />
+                                        </Style>
+                                    </ListBoxItem.Styles>
+                                    <StackPanel
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Spacing="16">
+                                        <icons:MaterialIcon Foreground="#f44336" Kind="Logout" />
+                                        <TextBlock
+                                            FontSize="20"
+                                            Foreground="#f44336"
+                                            IsVisible="{Binding Expand}"
+                                            Text="Logout" />
+                                    </StackPanel>
+                                </ListBoxItem>
+
                             </ListBox>
                         </StackPanel>
                     </ScrollViewer>

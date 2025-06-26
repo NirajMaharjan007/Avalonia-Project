@@ -106,6 +106,7 @@ namespace MyApp.ViewModels
                         LastName = LastName,
                         Email = Email,
                         Password = Password,
+                        CreatedOn = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"),
                     };
 
                     Enabled = false;

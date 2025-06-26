@@ -127,6 +127,20 @@ namespace MyApp.Services
             }
         }
 
+        public async Task<bool> LogoutAsync()
+        {
+            try
+            {
+                var response = await _httpClient.PostAsync($"{API}user/logout/", null);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Logout failed: {ex.Message}");
+                return false;
+            }
+        }
+
         public static void Dispose()
         {
             _httpClient.Dispose();
