@@ -23,6 +23,8 @@ public class Alert : AlertDialogBuilderParams
 
     private readonly AlertDialog _dialog = new();
 
+    public bool Confirmation = true;
+
     public Alert(Type type, string message)
     {
         _dialog.InitializeComponent(true);
@@ -48,6 +50,18 @@ public class Alert : AlertDialogBuilderParams
 
                 _dialog.Title = "Failed Operation";
                 _dialog.Content = fail;
+
+                break;
+
+            case Type.Warning:
+                Title = "Warning";
+                Warning warn = new(true);
+                warn.ContentText.Text = message;
+                warn.OkayButton.Click += (sender, e) => _dialog.Close();
+                warn.NoBtn.Click += (sender, e) => _dialog.Close();
+
+                _dialog.Title = "Failed Operation";
+                _dialog.Content = warn;
 
                 break;
         }

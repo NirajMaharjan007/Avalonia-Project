@@ -2,6 +2,7 @@ using System;
 using System.Windows.Input;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
+using MyApp.Misc.Dialogs;
 using MyApp.Views.Subviews;
 using ReactiveUI;
 
@@ -69,7 +70,13 @@ namespace MyApp.ViewModels
                     break;
 
                 case "Logout":
-                    CurrentView = new Dashboard();
+                    // CurrentView = new Dashboard();
+                    _ = new Alert(Alert.Type.Warning, "Are sure about to logout?")
+                    {
+                        Borderless = true,
+                    };
+
+                    // alert.Show();
                     break;
             }
             Console.WriteLine("item>" + item?.Tag);
