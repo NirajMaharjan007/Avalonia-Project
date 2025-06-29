@@ -50,6 +50,17 @@ public class Alert : AlertDialogBuilderParams
                 _dialog.Content = fail;
 
                 break;
+
+            case Type.Warning:
+                Title = "Warning";
+                Warning warn = new();
+                warn.ContentText.Text = message;
+                warn.OkayButton.Click += (sender, e) => _dialog.Close();
+
+                _dialog.Title = "Failed Operation";
+                _dialog.Content = warn;
+
+                break;
         }
         _dialog.IsVisible = true;
         _dialog.CanResize = false;

@@ -1,6 +1,8 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using MyApp.Services;
 
 namespace MyApp;
 
@@ -13,11 +15,20 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        try
         {
-            desktop.MainWindow = new MainWindow();
-        }
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                desktop.MainWindow = new MainWindow();
+            }
 
-        base.OnFrameworkInitializationCompleted();
+            base.OnFrameworkInitializationCompleted();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Main WINDOWS ERROR: " + ex.Message);
+            Auth.Dispose();
+            Environment.Exit(-1);
+        }
     }
 }

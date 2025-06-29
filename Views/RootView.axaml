@@ -153,6 +153,7 @@
                                         <Style Selector="ListBoxItem:selected">
                                             <Setter Property="Background" Value="#FFCDD2" />
                                         </Style>
+
                                     </ListBoxItem.Styles>
                                     <StackPanel
                                         HorizontalAlignment="Stretch"
@@ -167,7 +168,6 @@
                                             Text="Logout" />
                                     </StackPanel>
                                 </ListBoxItem>
-
                             </ListBox>
                         </StackPanel>
                     </ScrollViewer>
