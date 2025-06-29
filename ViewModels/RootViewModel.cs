@@ -73,6 +73,7 @@ namespace MyApp.ViewModels
                     // CurrentView = new Dashboard();
                     _ = new Alert(Alert.Type.Warning, "Are sure about to logout?")
                     {
+                        Confirmation = true,
                         Borderless = true,
                     };
 
